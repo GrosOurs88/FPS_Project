@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class AvatarMovementScript : MonoBehaviour
 {
+    // VARIABLES GAMEPLAY -------------------------------------
     // Vitesse de déplacement / rotation avatar
     public float speed;
     public float rotateSpeedController;
     public float rotateSpeedMouse;
     public float jumpForce;
 
+    // VARIABLES SON ------------------------------------------
     // Son de marche lent
     public string WalkLowPlayer_snd;
     [HideInInspector]
@@ -37,6 +39,100 @@ public class AvatarMovementScript : MonoBehaviour
     }
 
     void Update()
+    {
+        //TODO - Sortir les inputs des fonctions. 
+        Move ();
+        Jump ();
+        Pause ();
+           
+
+           // A mettre dans le script WeaponController
+
+            // Si on appuye sur l'input de tir
+            if (Input.GetButtonDown("Fire"))
+            {
+                // *** Code pour tirer une bullet au centre de l'écran, quel que soit la distance à laquelle se situe la cible ***
+            
+                // 1 - Lancer un Raycast qui part du centre de la caméra, droit devant
+                // 2 - Récupérer le point d'impact du raycast (cible)
+                // 3 - Faire partir une balle depuis le canon de l'arme, jusqu'à la cible
+
+                // *** Fin du code ***
+
+                // On joue le son de tir de pistolet
+                FMODUnity.RuntimeManager.PlayOneShot("event:/Weapons/GunShot");
+            }
+        }     
+        //FIN DE WEAPON CONTROLLER  
+
+       
+
+        
+
+    void Pause ()
+    {
+        // Quand le jeu est en pause
+        if (gamePaused)
+        {
+            // si appuye sur bouton action (jump)
+            if (Input.GetButtonDown("Jump"))
+            {
+                Application.Quit();
+            }
+
+            // si appuye sur le bouton retour
+            if (Input.GetButtonDown("Return"))
+            {
+                // désactive canvas pause
+                gamePaused = false;
+                canvasQuit.GetComponent<Canvas>().enabled = false;
+
+                // Désactive le freeze de la pause
+                Time.timeScale = 1;
+
+                // Joue le son de pause (pas encore intégré)
+                //FMODUnity.RuntimeManager.PlayOneShot("event:/Events/Pause");
+            }
+        }
+
+        // Quand on appuye sur start et que jeu n'est pas encore en pause
+        if (Input.GetButtonDown("Start") && !gamePaused)
+        {
+            // Met le jeu en pause (freeze)
+            Time.timeScale = 0;
+
+            // active canvas pause
+            gamePaused = true;
+            canvasQuit.GetComponent<Canvas>().enabled = true;
+
+            // Joue le son de pause (pas encore intégré)
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Event/Pause");
+        }
+
+        // Glue le son de marche au joueur (pour que le transform du son reste celui de l'avatar)
+        _WalkLowPlayer_snd.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+    }
+
+    }
+
+    void Jump ()
+    {
+        // Quand input de saut et que l'avatar n'est pas déjà en train de sauter
+        if (Input.GetButtonDown(("Jump")) && !avatarAlreadyJumped)
+        {
+            // Impulsion en Y            
+            transform.Translate(Vector3.up * jumpForce * Time.deltaTime, Space.World);
+
+            // On joue le son de jump (pas encore intégré)
+            //FMODUnity.RuntimeManager.PlayOneShot("event:/Avatar/Jump");
+
+            // On interdit à l'avatar de sauter de nouveau
+            avatarAlreadyJumped = true;
+        }      
+
+    }
+
+    void Move ()
     {
         // Si le jeu n'est pas en pause
         if (!gamePaused)
@@ -124,77 +220,13 @@ public class AvatarMovementScript : MonoBehaviour
                 // la velocité angulaire de l'avatar est nulle
                 gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
             }
-           
-            // Si on appuye sur l'input de tir
-            if (Input.GetButtonDown("Fire"))
-            {
-                // *** Code pour tirer une bullet au centre de l'écran, quel que soit la distance à laquelle se situe la cible ***
-            
-                // 1 - Lancer un Raycast qui part du centre de la caméra, droit devant
-                // 2 - Récupérer le point d'impact du raycast (cible)
-                // 3 - Faire partir une balle depuis le canon de l'arme, jusqu'à la cible
-
-                // *** Fin du code ***
-
-                // On joue le son de tir de pistolet
-                FMODUnity.RuntimeManager.PlayOneShot("event:/Weapons/GunShot");
-            }
-        }       
-
-        // Quand input de saut et que l'avatar n'est pas déjà en train de sauter
-        if (Input.GetButtonDown(("Jump")) && !avatarAlreadyJumped)
-        {
-            // Impulsion en Y            
-            transform.Translate(Vector3.up * jumpForce * Time.deltaTime, Space.World);
-
-            // On joue le son de jump (pas encore intégré)
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Avatar/Jump");
-
-            // On interdit à l'avatar de sauter de nouveau
-            avatarAlreadyJumped = true;
-        }      
-
-        // Quand le jeu est en pause
-        if (gamePaused)
-        {
-            // si appuye sur bouton action (jump)
-            if (Input.GetButtonDown("Jump"))
-            {
-                Application.Quit();
-            }
-
-            // si appuye sur le bouton retour
-            if (Input.GetButtonDown("Return"))
-            {
-                // désactive canvas pause
-                gamePaused = false;
-                canvasQuit.GetComponent<Canvas>().enabled = false;
-
-                // Désactive le freeze de la pause
-                Time.timeScale = 1;
-
-                // Joue le son de pause (pas encore intégré)
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Events/Pause");
-            }
         }
 
-        // Quand on appuye sur start et que jeu n'est pas encore en pause
-        if (Input.GetButtonDown("Start") && !gamePaused)
-        {
-            // Met le jeu en pause (freeze)
-            Time.timeScale = 0;
-
-            // active canvas pause
-            gamePaused = true;
-            canvasQuit.GetComponent<Canvas>().enabled = true;
-
-            // Joue le son de pause (pas encore intégré)
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Event/Pause");
-        }
-
-        // Glue le son de marche au joueur (pour que le transform du son reste celui de l'avatar)
-        _WalkLowPlayer_snd.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
+
+
+
+
     
     private void OnCollisionEnter(Collision collision)
     {
