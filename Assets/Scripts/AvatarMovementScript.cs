@@ -113,7 +113,6 @@ public class AvatarMovementScript : MonoBehaviour
         _WalkLowPlayer_snd.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
     }
 
-    }
 
     void Jump ()
     {
