@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.10.00">
+    <object class="AudioFile" id="{b678fecf-1a1f-45b4-8a31-3443ca7ddcb3}">
+        <property name="assetPath">
+            <value>Walking_Grass_Low_Sound.wav</value>
+        </property>
+        <property name="isStreaming">
+            <value>true</value>
+        </property>
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>14.862539682539683</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{3c8018bf-293b-4d60-9d05-116ca5cd644a}</destination>
+        </relationship>
+    </object>
+</objects>
