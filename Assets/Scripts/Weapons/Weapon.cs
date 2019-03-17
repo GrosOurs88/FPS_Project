@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    //public float bulletDamage;
-    //public int magazineSize; //Taille du chargeur
-    //public int magazineAmmo; //nombre de balles restantes dans le chargeur
-    //public int carriedAmmo; //nombre de balles au total
+    //private float bulletDamage;
+    //private int magazineSize; //Taille du chargeur
+    //private int magazineAmmo; //nombre de balles restantes dans le chargeur
+    //private int carriedAmmo; //nombre de balles au total
     
-    //public GameObject bullet;
+    //private GameObject bullet;
 
     void HitScanShot ()
     {
