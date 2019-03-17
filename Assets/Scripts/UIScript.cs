@@ -8,7 +8,11 @@ public class UIScript : MonoBehaviour
 
     private void Start()
     {
+        // Récupère le script "AvatarMovementScript" sur l'avatar
         AMS = GameObject.Find("Avatar").GetComponent<AvatarMovementScript>();
+
+        // Désactive le pointeur de la souris
+        Cursor.visible = false;
     }
 
     public void Quit()
