@@ -19,6 +19,16 @@ public class CameraControlScript : MonoBehaviour
     // Avatar
     public GameObject avatar;
 
+    // Mouse Locker
+    public CursorLockMode cursorMode;
+
+
+    void Start ()
+    {
+            Cursor.visible = false;
+            Cursor.lockState = cursorMode; //<- here works
+    }
+
     void Update()
     {
         // Rotation en X (autour de l'avatar) --> angle autour de l'axe y (base) + valeur de la souris sur l'axe X (droite/gauche) * sensibilité
@@ -38,5 +48,6 @@ public class CameraControlScript : MonoBehaviour
 
         // la velocité de l'avatar est nulle
         avatar.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+
     }
 }

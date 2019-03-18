@@ -4,12 +4,24 @@ using UnityEngine;
 
 public class WeaponControllerScript : MonoBehaviour
 {
+    public Weapon weapon;
+    public GameObject weaponGO;
+
+
+    void Start()
+    {
+        weapon = GetComponentInChildren(typeof(Weapon)) as Weapon;
+    }
  
     void Update()
     {
-        // Si on appuye sur l'input de tir
+        // Si on appuye sur l'input de tir //GETBUTTON DOWN !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (must be GetButton())
         if (Input.GetButtonDown("Fire"))
         {
+            print ("shot");
+            weapon.HitScanShot();
+
+
             // *** Code pour tirer une bullet au centre de l'écran, quel que soit la distance à laquelle se situe la cible ***
 
             // 1 - Lancer un Raycast qui part du centre de la caméra, droit devant
