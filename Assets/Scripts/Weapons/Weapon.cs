@@ -23,7 +23,7 @@ public class Weapon : MonoBehaviour
 
     void Start ()
     {
-        //cam = gameObject.GetComponentInChildren(typeof(Camera)) as Camera; The camera is parent of this object
+        
     }
 
     public void HitScanShot ()

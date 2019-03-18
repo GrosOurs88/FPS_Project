@@ -14,9 +14,7 @@ public class Damageable : MonoBehaviour
     public void Damaged (float damageTaken)
     {
         damageTaken = damageTaken * multiplier;
-        print (damageTaken);
         health.damage = damageTaken;
-
     }
 
 }

@@ -18,7 +18,6 @@ public class WeaponControllerScript : MonoBehaviour
         // Si on appuye sur l'input de tir //GETBUTTON DOWN !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (must be GetButton())
         if (Input.GetButtonDown("Fire"))
         {
-            print ("shot");
             weapon.HitScanShot();
 
 
