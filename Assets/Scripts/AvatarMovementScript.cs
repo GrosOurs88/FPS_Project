@@ -43,53 +43,53 @@ public class AvatarMovementScript : MonoBehaviour
         //TODO - Sortir les inputs des fonctions. 
         Move();
         Jump();
-        Pause();
+      //  Pause();
 
     }
 
-    void Pause ()
-    {
-        // Quand le jeu est en pause
-        if (gamePaused)
-        {
-            // si appuye sur bouton action (jump)
-            if (Input.GetButtonDown("Jump"))
-            {
-                Application.Quit();
-            }
+    //void Pause ()
+    //{
+    //    // Quand le jeu est en pause
+    //    if (gamePaused)
+    //    {
+    //        // si appuye sur bouton action (jump)
+    //        if (Input.GetButtonDown("Jump"))
+    //        {
+    //            Application.Quit();
+    //        }
 
-            // si appuye sur le bouton retour
-            if (Input.GetButtonDown("Return"))
-            {
-                // désactive canvas pause
-                gamePaused = false;
-                canvasQuit.GetComponent<Canvas>().enabled = false;
+    //        // si appuye sur le bouton retour
+    //        if (Input.GetButtonDown("Return"))
+    //        {
+    //            // désactive canvas pause
+    //            gamePaused = false;
+    //            canvasQuit.GetComponent<Canvas>().enabled = false;
 
-                // Désactive le freeze de la pause
-                Time.timeScale = 1;
+    //            // Désactive le freeze de la pause
+    //            Time.timeScale = 1;
 
-                // Joue le son de pause (pas encore intégré)
-                //FMODUnity.RuntimeManager.PlayOneShot("event:/Events/Pause");
-            }
-        }
+    //            // Joue le son de pause (pas encore intégré)
+    //            //FMODUnity.RuntimeManager.PlayOneShot("event:/Events/Pause");
+    //        }
+    //    }
 
-        // Quand on appuye sur start et que jeu n'est pas encore en pause
-        if (Input.GetButtonDown("Start") && !gamePaused)
-        {
-            // Met le jeu en pause (freeze)
-            Time.timeScale = 0;
+    //    // Quand on appuye sur start et que jeu n'est pas encore en pause
+    //    if (Input.GetButtonDown("Start") && !gamePaused)
+    //    {
+    //        // Met le jeu en pause (freeze)
+    //        Time.timeScale = 0;
 
-            // active canvas pause
-            gamePaused = true;
-            canvasQuit.GetComponent<Canvas>().enabled = true;
+    //        // active canvas pause
+    //        gamePaused = true;
+    //        canvasQuit.GetComponent<Canvas>().enabled = true;
 
-            // Joue le son de pause (pas encore intégré)
-            //FMODUnity.RuntimeManager.PlayOneShot("event:/Event/Pause");
-        }
+    //        // Joue le son de pause (pas encore intégré)
+    //        //FMODUnity.RuntimeManager.PlayOneShot("event:/Event/Pause");
+    //    }
 
-        // Glue le son de marche au joueur (pour que le transform du son reste celui de l'avatar)
-        _WalkLowPlayer_snd.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-    }
+    //    // Glue le son de marche au joueur (pour que le transform du son reste celui de l'avatar)
+    //    _WalkLowPlayer_snd.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+    //}
     
     void Jump ()
     {
@@ -118,8 +118,8 @@ public class AvatarMovementScript : MonoBehaviour
             Vector3 movement = new Vector3(horizontalMove, 0f, verticalMove);
             rb.AddRelativeForce(movement * speed * Time.deltaTime);
 
-            // Si aucun axe n'est actif (l'avatar n'est pas en mouvement)
-            if (Input.GetAxis("Horizontal") < 0.1f && Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Vertical") < 0.1f && Input.GetAxis("Vertical") > -0.1f)
+            // Si aucun axe n'est actif (l'avatar n'est pas en mouvement) est que l'avatar n'est pas en train de sauter
+            if (Input.GetAxis("Horizontal") < 0.1f && Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Vertical") < 0.1f && Input.GetAxis("Vertical") > -0.1f && !avatarAlreadyJumped)
             {
                 // la velocité de l'avatar est nulle
                 gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;

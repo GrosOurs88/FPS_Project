@@ -601,7 +601,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 512041724}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b5b9e817eccc14043b559df6ef18287e, type: 3}
   m_Name: 
@@ -1003,8 +1003,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffdbc81b78a24e4498587bcde27c9733, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1000
-  jumpForce: 50
+  speed: 500
+  jumpForce: 10
   WalkLowPlayer_snd: event:/Avatar/Walk
   gamePaused: 0
   canvasQuit: {fileID: 1847756860}
@@ -1017,7 +1017,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 900279687}
   serializedVersion: 2
-  m_Mass: 3
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0
   m_UseGravity: 1
@@ -1439,6 +1439,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   RPS: 10
   accuracy: 0
+  fire: {fileID: 0}
+  impactEffect: {fileID: 0}
   cam: {fileID: 534669902}
 --- !u!1 &1084418645
 GameObject:
@@ -2631,7 +2633,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1847756858
 MonoBehaviour:
   m_ObjectHideFlags: 0
