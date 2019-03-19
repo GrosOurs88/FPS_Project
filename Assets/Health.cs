@@ -43,47 +43,36 @@ public class Health : MonoBehaviour
             //Text Edit
             temp = float.Parse(damageText.text) + damage;
             damageText.text = temp.ToString(); 
-
             damageText.color = new Color (0,0,0,255);
 
-            //Reset (1f); 
+            //Appelle FadeOut() afin d'effacer le texte. 
             StartCoroutine(FadeOut()); 
             damage = 0;       
         }
         
     }
-    // I Don't know why it dosen't work !
+
     IEnumerator FadeOut ()
     {
+        // Reset de variable si la fonction est appelée plusieurs fois.
         fadeOut = 1;
         fadeOutTime = 0;
+        
+
+        //Tant que FadeOut est SUPERIEUR à ZERO
+        //L'alpha du text tend vers 0 (transparent)
         while (fadeOut > 0)
         {
         fadeOutTime += 0.5f * Time.deltaTime;
         fadeOut = Mathf.Lerp (1,0, fadeOutTime);
         damageText.color = new Color(0,0,0,fadeOut);
-        
+        //Affiche la nouvelle couleur du texte
+        if (fadeOut <= 0)
+            damageText.text = 0.ToString();
         yield return damageText.color;
         }
 
-        damageText.text = 0.ToString();
-        
-        
-        /*
-        while (fadeOut >= 0)
-        {
-            fadeOutTime *= Time.deltaTime;
-            fadeOut = Mathf.Lerp (0,255, fadeOutTime);
-            damageText.color -= new Color(0,0,0,fadeOut);
 
-            print (fadeOutTime);
-            yield return null;
-
-            if (damage != 0)
-                yield break;
-        }
-        fadeOutTime = 0;
-        //yield return;*/
     }
 
 }

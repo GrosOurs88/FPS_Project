@@ -13,16 +13,20 @@ public class Weapon : MonoBehaviour
     private float maxDistanceHitScanShot = 100f;
 
 
-    //Accuracy Calculator Variables
+    //Accuracy Calculator Variables . WIP
     public float accuracy = 0;
     private Vector3 origin;
     private Vector3 direction;
     
     private GameObject bullet;
 
+    //VFX
+    public ParticleSystem fire;
+    public GameObject impactEffect;
+
+
     //Camera
     public GameObject cam;
-    
 
     //Raycasting
     private RaycastHit hit;
@@ -37,11 +41,23 @@ public class Weapon : MonoBehaviour
 
     public void HitScanShot ()
     {
+        //VFX
+        fire.Play();
+
         //RayCast 
         origin = new Vector3 (cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistanceHitScanShot))
         {
+            /*
+            hitps.transform.position = hit.point;
+            hitps.Play();
+            //Kind Of Work
+            //hitps.transform.rotation = hit.transform.rotation;
+            hitps.transform.Rotate (hit.normal.x, hit.normal.y, hit.normal.z, Space.World);*/
+
+            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+
             damageable = hit.transform.GetComponent<Damageable>();
             if (damageable != null)
             {
