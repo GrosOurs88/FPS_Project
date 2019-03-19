@@ -14,8 +14,8 @@ public class Health : MonoBehaviour
 
 
     private float temp;
-    private float fadeOut = 0;
-    private float fadeOutTime = 0.1f;
+    private float fadeOut = 255;
+    private float fadeOutTime = 0;
 
     
     void Start()
@@ -55,14 +55,17 @@ public class Health : MonoBehaviour
     // I Don't know why it dosen't work !
     IEnumerator FadeOut ()
     {
-        while (fadeOut <= 25.5f)
+        fadeOut = 1;
+        fadeOutTime = 0;
+        while (fadeOut > 0)
         {
-        fadeOut = Mathf.Lerp (0,255, fadeOutTime);
-        damageText.color -= new Color(0,0,0,fadeOut);
-        print (fadeOut);
-        yield return null;
+        fadeOutTime += 0.5f * Time.deltaTime;
+        fadeOut = Mathf.Lerp (1,0, fadeOutTime);
+        damageText.color = new Color(0,0,0,fadeOut);
+        print (fadeOutTime);
+        yield return damageText.color;
         }
-        fadeOut = 0;
+
         damageText.text = 0.ToString();
         print ("STOP");
         
@@ -83,13 +86,4 @@ public class Health : MonoBehaviour
         //yield return;*/
     }
 
-    private void Reset (float resetTime) 
-    {
-        float t = resetTime;
-        while (t<=0)
-        {
-            t += Time.deltaTime;
-        }
-        damage = 0;
-    }
 }
