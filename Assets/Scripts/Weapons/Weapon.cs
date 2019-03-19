@@ -57,6 +57,7 @@ public class Weapon : MonoBehaviour
             hitps.transform.Rotate (hit.normal.x, hit.normal.y, hit.normal.z, Space.World);*/
 
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            print (hit.normal);
 
             damageable = hit.transform.GetComponent<Damageable>();
             if (damageable != null)
