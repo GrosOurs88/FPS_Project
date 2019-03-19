@@ -4,16 +4,25 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    public float RPS = 10f; //RPS (Rounds per Minute)
+
     private float bulletDamage = 42;
     private int magazineSize; //Taille du chargeur
     private int magazineAmmo; //nombre de balles restantes dans le chargeur
     private int carriedAmmo; //nombre de balles au total
     private float maxDistanceHitScanShot = 100f;
+
+
+    //Accuracy Calculator Variables
+    public float accuracy = 0;
+    private Vector3 origin;
+    private Vector3 direction;
     
     private GameObject bullet;
 
     //Camera
     public GameObject cam;
+    
 
     //Raycasting
     private RaycastHit hit;
@@ -29,6 +38,8 @@ public class Weapon : MonoBehaviour
     public void HitScanShot ()
     {
         //RayCast 
+        origin = new Vector3 (cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistanceHitScanShot))
         {
             damageable = hit.transform.GetComponent<Damageable>();

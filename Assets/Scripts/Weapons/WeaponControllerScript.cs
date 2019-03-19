@@ -7,6 +7,8 @@ public class WeaponControllerScript : MonoBehaviour
     public Weapon weapon;
     public GameObject weaponGO;
 
+    private float timeFireRate;
+
 
     void Start()
     {
@@ -16,9 +18,10 @@ public class WeaponControllerScript : MonoBehaviour
     void Update()
     {
         // Si on appuye sur l'input de tir //GETBUTTON DOWN !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (must be GetButton())
-        if (Input.GetButtonDown("Fire"))
+        if (Input.GetButton("Fire") && timeFireRate >= 1 / weapon.RPS)
         {
             weapon.HitScanShot();
+            timeFireRate = 0;
 
 
             // *** Code pour tirer une bullet au centre de l'écran, quel que soit la distance à laquelle se situe la cible ***
@@ -32,5 +35,7 @@ public class WeaponControllerScript : MonoBehaviour
             // On joue le son de tir de pistolet
             FMODUnity.RuntimeManager.PlayOneShot("event:/Weapons/GunShot");
         }
+        if (timeFireRate < 1 / weapon.RPS)
+            timeFireRate += Time.deltaTime;
     }
 }

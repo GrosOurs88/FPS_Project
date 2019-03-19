@@ -62,12 +62,12 @@ public class Health : MonoBehaviour
         fadeOutTime += 0.5f * Time.deltaTime;
         fadeOut = Mathf.Lerp (1,0, fadeOutTime);
         damageText.color = new Color(0,0,0,fadeOut);
-        print (fadeOutTime);
+        
         yield return damageText.color;
         }
 
         damageText.text = 0.ToString();
-        print ("STOP");
+        
         
         /*
         while (fadeOut >= 0)
