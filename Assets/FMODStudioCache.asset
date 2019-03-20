@@ -26,7 +26,7 @@ MonoBehaviour:
   - {fileID: 114775030592735598}
   StringsBanks:
   - {fileID: 114881168963643980}
-  stringsBankWriteTime: 636886211564935395
+  stringsBankWriteTime: 636886225600000000
   cacheVersion: 3
 --- !u!114 &114008372028143344
 MonoBehaviour:
@@ -378,6 +378,22 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &114334899539222724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Automatic
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114368105124703464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -480,7 +496,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114672924727195754}
+  - {fileID: 114334899539222724}
   MinDistance: 1
   MaxDistance: 20
   Length: 480
@@ -1100,11 +1116,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: F:\FPS_Project\Assets\FMOD_Sounds\Build\Desktop\Master Bank.bank
-  lastModified: 636886211564925395
+  lastModified: 636886225600000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 295936
+    Value: 244256
   Exists: 1
 --- !u!114 &114777841365234686
 MonoBehaviour:
@@ -1292,7 +1308,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD_Sounds\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636886211564935395
+  lastModified: 636886225600000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
