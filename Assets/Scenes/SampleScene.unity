@@ -337,7 +337,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 188842529}
-  m_Material: {fileID: 13400000, guid: 66228e077117bbe4789ea62fa1579b11, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -869,7 +869,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 936867568}
-  m_Material: {fileID: 13400000, guid: 66228e077117bbe4789ea62fa1579b11, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -960,7 +960,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 954313129}
-  m_Material: {fileID: 13400000, guid: 66228e077117bbe4789ea62fa1579b11, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -6329,7 +6329,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1355968936}
-  m_Material: {fileID: 13400000, guid: 66228e077117bbe4789ea62fa1579b11, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -6851,7 +6851,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1831605472}
-  m_Material: {fileID: 13400000, guid: 66228e077117bbe4789ea62fa1579b11, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -7594,6 +7594,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Avatar
       objectReference: {fileID: 0}
+    - target: {fileID: 761023565193541449, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 761023565193541453, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7659,6 +7664,16 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 811946136}
+    - target: {fileID: 761023565193541448, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: jumpForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 761023565193541448, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 761023565315700829, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
       propertyPath: bulletEffect

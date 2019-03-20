@@ -10,6 +10,7 @@ public class AvatarMovementScript : MonoBehaviour
     private Rigidbody rb;
     private float horizontalMove;
     private float verticalMove;
+    float distToGround;
 
     // VARIABLES SON ------------------------------------------
     public string WalkLowPlayer_snd;                 // Son de marche lent
@@ -30,8 +31,7 @@ public class AvatarMovementScript : MonoBehaviour
 
     void Start()
     {
-        // Va chercher le Rigidbody du GameObject (avatar)
-        
+        // Va chercher le Rigidbody du GameObject (avatar)        
         rb = GetComponent<Rigidbody>();
         
         // Référencement du son de marche
@@ -39,14 +39,18 @@ public class AvatarMovementScript : MonoBehaviour
         // Plug le son à la caméra (l'avatar)
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(_WalkLowPlayer_snd, GetComponent<Transform>(), GetComponent<Rigidbody>());
         
+        // Taille égale à la moitié de la taille du collider de l'avatar (.extents.y)
+        distToGround = GetComponent<Collider>().bounds.extents.y;
     }
 
     void Update()
     {
-        //TODO - Sortir les inputs des fonctions. 
+        // TODO - Sortir les inputs des fonctions. 
         Move();
         Jump();
-      //  Pause();
+        // Pause();
+
+        print("grounded = " + IsGrounded());
 
     }
 
@@ -90,12 +94,18 @@ public class AvatarMovementScript : MonoBehaviour
     //        //FMODUnity.RuntimeManager.PlayOneShot("event:/Event/Pause");
     //    }
 
-    //    // Glue le son de marche au joueur (pour que le transform du son reste celui de l'avatar)
-    //    _WalkLowPlayer_snd.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+    //    
     //}
     
     void Jump ()
     {
+        // Si on touche le sol
+        if (IsGrounded())
+        {
+            // On reset le fait de pouvoir sauter
+            avatarAlreadyJumped = false;
+        }
+
         // Quand input de saut et que l'avatar n'est pas déjà en train de sauter
         if (Input.GetButtonDown(("Jump")) && !avatarAlreadyJumped)
         {
@@ -107,7 +117,9 @@ public class AvatarMovementScript : MonoBehaviour
 
             // On interdit à l'avatar de sauter de nouveau
             avatarAlreadyJumped = true;
-        }    
+        }
+
+  
     }
 
     void Move ()
@@ -119,10 +131,11 @@ public class AvatarMovementScript : MonoBehaviour
             horizontalMove = Input.GetAxis("Horizontal");
             verticalMove = Input.GetAxis("Vertical");
             Vector3 movement = new Vector3(horizontalMove, 0f, verticalMove);
-            rb.AddRelativeForce(movement * speed * Time.deltaTime);
+           // rb.AddRelativeForce(movement * speed * Time.deltaTime);
+            transform.Translate(new Vector3((Input.GetAxis("Horizontal") * speed * Time.deltaTime), 0, Input.GetAxis("Vertical") * speed * Time.deltaTime));
 
-            // Si aucun axe n'est actif (l'avatar n'est pas en mouvement) est que l'avatar n'est pas en train de sauter
-            if (Input.GetAxis("Horizontal") < 0.1f && Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Vertical") < 0.1f && Input.GetAxis("Vertical") > -0.1f && !avatarAlreadyJumped)
+            // Si aucun axe n'est actif (l'avatar n'est pas en mouvement) est que l'avatar est pas au sol
+            if (Input.GetAxis("Horizontal") < 0.1f && Input.GetAxis("Horizontal") > -0.1f && Input.GetAxis("Vertical") < 0.1f && Input.GetAxis("Vertical") > -0.1f && IsGrounded())
             {
                 // la velocité de l'avatar est nulle
                 gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
@@ -143,16 +156,23 @@ public class AvatarMovementScript : MonoBehaviour
                     soundWalkingAlreadyPlaying = true;
                 }
             }
+            // Glue le son de marche au joueur (pour que le transform du son reste celui de l'avatar)
+            _WalkLowPlayer_snd.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
         }
     }
-    
+
+    //Vérifie si l'avatar est au sol (sur n'importe quel élément) ou pas
+    public bool IsGrounded()
+    {
+        return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         // Quand on touche un sol
         if(collision.transform.tag == "Floor")
         {
-            // On reset le fait de pouvoir sauter
-            avatarAlreadyJumped = false;
+            
         }
     }
 }

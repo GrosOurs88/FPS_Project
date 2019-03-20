@@ -32,8 +32,8 @@ public class WeaponControllerScript : MonoBehaviour
 
             // *** Fin du code ***
 
-            // On joue le son de tir de pistolet
-            FMODUnity.RuntimeManager.PlayOneShot("event:/Weapons/GunShot");
+            // On joue le son de tir de l'arme
+            FMODUnity.RuntimeManager.PlayOneShot("event:/Weapons/GunShot", transform.localPosition);
         }
         if (timeFireRate < 1 / weapon.RPS)
             timeFireRate += Time.deltaTime;
