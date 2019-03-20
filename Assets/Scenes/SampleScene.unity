@@ -7667,12 +7667,17 @@ PrefabInstance:
     - target: {fileID: 761023565193541448, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
       propertyPath: jumpForce
-      value: 10
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 761023565193541448, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
       propertyPath: speed
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 761023565193541448, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: speedMultiplier
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 761023565315700829, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}

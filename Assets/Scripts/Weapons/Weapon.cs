@@ -68,8 +68,7 @@ public class Weapon : MonoBehaviour
             }
         //if hit peux prendre des dégats
         //transmettre à l'objet le nombre de points de vie correspondant (bulletDamage) // L'objet touché s'occupera de compter les degats etc.. 
-        }
-        
+        }        
     }
 
     public void PhysicShot ()
