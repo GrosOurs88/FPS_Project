@@ -7758,7 +7758,7 @@ PrefabInstance:
     - target: {fileID: 761023565865946624, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
       propertyPath: SubModule.enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 761023565865946624, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
