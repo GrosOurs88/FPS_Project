@@ -28,14 +28,17 @@ public class AvatarMovementScript : MonoBehaviour
     // GAMEOBJECTS --------------------------------------------
     public GameObject mainCamera;
 
-    private void Start()
+    void Start()
     {
+        // Va chercher le Rigidbody du GameObject (avatar)
+        
+        rb = GetComponent<Rigidbody>();
+        
         // Référencement du son de marche
         _WalkLowPlayer_snd = FMODUnity.RuntimeManager.CreateInstance(WalkLowPlayer_snd);
         // Plug le son à la caméra (l'avatar)
         FMODUnity.RuntimeManager.AttachInstanceToGameObject(_WalkLowPlayer_snd, GetComponent<Transform>(), GetComponent<Rigidbody>());
-        // Va chercher le Rigidbody du GameObject (avatar)
-        rb = GetComponent<Rigidbody>();
+        
     }
 
     void Update()

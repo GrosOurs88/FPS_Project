@@ -23,6 +23,7 @@ public class Weapon : MonoBehaviour
     //VFX
     public ParticleSystem fire;
     public GameObject impactEffect;
+    public GameObject bulletEffect;
 
 
     //Camera
@@ -43,6 +44,7 @@ public class Weapon : MonoBehaviour
     {
         //VFX
         fire.Play();
+        //bulletEffect.transform.LookAt(cam.transform.forward);
 
         //RayCast 
         origin = new Vector3 (cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
@@ -57,7 +59,6 @@ public class Weapon : MonoBehaviour
             hitps.transform.Rotate (hit.normal.x, hit.normal.y, hit.normal.z, Space.World);*/
 
             Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
-            print (hit.normal);
 
             damageable = hit.transform.GetComponent<Damageable>();
             if (damageable != null)
