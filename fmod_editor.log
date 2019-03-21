@@ -4,10 +4,10 @@
 [LOG] SystemI::setOutputInternal               : Setting output to 'FMOD WASAPI Output'
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEX): wFormatTag=0xFFFE, nChannels=2, nSamplesPerSec=48000, nAvgBytesPerSec=384000, nBlockAlign=8, wBitsPerSample=32, cbSize=22.
 [LOG] OutputWASAPI::init                       : Mix Format (WAVEFORMATEXTENSIBLE): wValidBitsPerSample=32, dwChannelMask=0x00000003, SubFormat=00000003-0000-0010-8000-00AA00389B71.
-[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
+[LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 10.67ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Priority: 2, Stack Size: 65536, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Priority: 3, Stack Size: 49152, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000000003E273778 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 00000000311304D8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Priority: 0, Stack Size: 65536, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -20,107 +20,147 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 318240
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 20032
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 00000000597DF5FC
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000004B49F5FC
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFC04FC0D70
-[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFC04FC0D40
-[LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFC04FC0E40
-[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFC04FC0F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000052D295E8
+[LOG] SystemI::createSoundInternal             : exinfo->useropen           = 000007FEB92A0D70
+[LOG] SystemI::createSoundInternal             : exinfo->userclose          = 000007FEB92A0D40
+[LOG] SystemI::createSoundInternal             : exinfo->userread           = 000007FEB92A0E40
+[LOG] SystemI::createSoundInternal             : exinfo->userseek           = 000007FEB92A0F00
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 0000000057728C28
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Gun', format=2, channels=2, frequency=48000, lengthbytes=10048, lengthpcm=34080, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.532764.
-[WRN] EventInstance::update                    : Event {311cc444-0c1e-46b7-a9b1-d7b66152c8aa} waited 125 milliseconds for sample data to load.  Preload sample data to avoid this delay.
-[WRN] EventInstance::update                    : Event {311cc444-0c1e-46b7-a9b1-d7b66152c8aa} waited 143 milliseconds for sample data to load.  Preload sample data to avoid this delay.
-[WRN] EventInstance::update                    : Event {311cc444-0c1e-46b7-a9b1-d7b66152c8aa} waited 72 milliseconds for sample data to load.  Preload sample data to avoid this delay.
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
 [LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
 [LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Priority: 1, Stack Size: 81920, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
-[LOG] SystemI::createSound                     : setdata soundi = 0000000048D7B118 : node = 000000003FA03F30
-[LOG] SystemI::createSound                     : add node to async list : head = 000000003E957808.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000048D7B118
+[LOG] SystemI::createSound                     : setdata soundi = 000000001A04F8B8 : node = 000000003074CE90
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004DF358F8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001A04F8B8
 [LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003FA04048
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003074CFA8
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
 [LOG] Thread::initThread                       :     Init FMOD file thread. Priority: 1, Stack Size: 16384, Semaphore: No, Sleep Time: 10, Looping: Yes.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000048D7B118
-[LOG] SoundI::getSubSound                      : sound 0000000048D7B118.  Subsound index 0 / 1
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001A04F8B8
+[LOG] SoundI::getSubSound                      : sound 000000001A04F8B8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Walking_Grass_Low_Sound (000000001A04F8B8)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000004DF367E8)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000001A04FDC8)
 [LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
 [LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 0000000048D7C8B8 : node = 000000003FA02A30
-[LOG] SystemI::createSound                     : add node to async list : head = 000000003E957808.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000048D7C8B8
+[LOG] SystemI::createSound                     : setdata soundi = 000000001A04F8B8 : node = 000000003074CE90
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004DF358F8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001A04F8B8
 [LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
 [LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
 [LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
 [LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
 [LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003FA02B48
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003074CFA8
 [LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
 [LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000048D7C8B8
-[LOG] SoundI::getSubSound                      : sound 0000000048D7C8B8.  Subsound index 0 / 1
-[LOG] SoundI::release                          : Walking_Grass_Low_Sound (0000000048D7B118)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000003E958F18)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (0000000048D7B2C8)
-[LOG] SoundI::release                          : Walking_Grass_Low_Sound (0000000048D7C8B8)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000003E957858)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (0000000048D7B478)
-[LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 0000000048D7C8B8 : node = 000000003FA03750
-[LOG] SystemI::createSound                     : add node to async list : head = 000000003E957808.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000048D7C8B8
-[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003FA03868
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000048D7C8B8
-[LOG] SoundI::getSubSound                      : sound 0000000048D7C8B8.  Subsound index 0 / 1
-[LOG] SoundI::release                          : Walking_Grass_Low_Sound (0000000048D7C8B8)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000003E958A38)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (0000000048D7B118)
-[LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
-[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
-[LOG] SystemI::createSound                     : setdata soundi = 0000000048D7B628 : node = 000000003FA04080
-[LOG] SystemI::createSound                     : add node to async list : head = 000000003E957808.  list count = 0
-[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 0000000048D7B628
-[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
-[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
-[LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
-[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
-[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003FA04198
-[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
-[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
-[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
-[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
-[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 0000000048D7B628
-[LOG] SoundI::getSubSound                      : sound 0000000048D7B628.  Subsound index 0 / 1
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001A04F8B8
+[LOG] SoundI::getSubSound                      : sound 000000001A04F8B8.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Walking_Grass_Low_Sound (000000001A04F8B8)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000004DF367E8)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000001A04FDC8)
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
 [LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] SoundI::release                          : Walking_Grass_Low_Sound (0000000048D7B628)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000003E959DB8)
-[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (0000000048D7C8B8)
-[LOG] SoundI::release                          :  (000000004CE218B8)
-[LOG] SoundI::release                          :     Gun (000000003E9583B8)
+[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
+[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 3
+[LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000001A050128 : node = 000000003074CE90
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004DF358F8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001A050128
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003074CFA8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001A050128
+[LOG] SoundI::getSubSound                      : sound 000000001A050128.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Walking_Grass_Low_Sound (000000001A050128)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000004DF36E68)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000001A04FA68)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000001A050128 : node = 000000003074CE90
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004DF358F8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001A050128
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003074CFA8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001A050128
+[LOG] SoundI::getSubSound                      : sound 000000001A050128.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Walking_Grass_Low_Sound (000000001A050128)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000004DF36E68)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000001A04FA68)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000001A050128 : node = 000000003074CE90
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004DF358F8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001A050128
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003074CFA8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001A050128
+[LOG] SoundI::getSubSound                      : sound 000000001A050128.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Walking_Grass_Low_Sound (000000001A050128)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000004DF36E68)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000001A04FA68)
+[LOG] SystemI::createSound                     : filename = Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000000001A050128 : node = 000000003074CE90
+[LOG] SystemI::createSound                     : add node to async list : head = 000000004DF358F8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000000001A050128
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\FMOD_Sounds\Build\Desktop/Master Bank.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 232
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 318240
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 20032
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000000003074CFA8
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='Walking_Grass_Low_Sound', format=2, channels=2, frequency=48000, lengthbytes=177664, lengthpcm=713401, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.194068.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000000001A050128
+[LOG] SoundI::getSubSound                      : sound 000000001A050128.  Subsound index 0 / 1
+[LOG] SoundI::release                          : Walking_Grass_Low_Sound (000000001A050128)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000004DF36E68)
+[LOG] SoundI::release                          :     Walking_Grass_Low_Sound (000000001A04FA68)
+[LOG] SoundI::release                          :  (000000003400A7D8)
+[LOG] SoundI::release                          :     Gun (000000004DF35FC8)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
@@ -131,17 +171,12 @@
 [LOG] Thread::callback                         : FMOD mixer thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
 [LOG] SystemI::close                           : Closed.
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] Manager::readBank                        : fileversion = 100, compatVersion = 99 (oldest = 44, newest = 103)
-[LOG] PlaybackSystem::acquireMasterBus         : Setting master channel group format to 3
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Thread::callback                         : FMOD Studio sample load thread finished.
 [LOG] LiveUpdate::release                      : 
 [LOG] LiveUpdate::reset                        : Reset connection (reason Disconnected)
 [LOG] Thread::callback                         : FMOD stream thread finished.
 [LOG] Thread::callback                         : FMOD mixer thread finished.
+[LOG] Thread::callback                         : FMOD nonblocking thread (0) finished.
+[LOG] Thread::callback                         : FMOD file thread finished.
 [LOG] SystemI::close                           : Closed.

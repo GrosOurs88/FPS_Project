@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EditorBanks:
   - {fileID: 114598880909642854}
-  - {fileID: 114874501044590346}
+  - {fileID: 114087485455232256}
   EditorEvents:
   - {fileID: 114142619404578548}
   - {fileID: 114924767455401840}
@@ -27,7 +27,7 @@ MonoBehaviour:
   - {fileID: 114534341944682060}
   StringsBanks:
   - {fileID: 114598880909642854}
-  stringsBankWriteTime: 636887043512975794
+  stringsBankWriteTime: 636887043740000000
   cacheVersion: 3
 --- !u!114 &114008372028143344
 MonoBehaviour:
@@ -98,6 +98,22 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 470
+--- !u!114 &114050134339474208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Automatic
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114051003965289390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -155,7 +171,7 @@ MonoBehaviour:
   Path: event:/Events/Pause
   guid: edb77e98dac2f14ca76a94fac9dbadca
   Banks:
-  - {fileID: 114874501044590346}
+  - {fileID: 114087485455232256}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -163,6 +179,25 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 0
+--- !u!114 &114087485455232256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: F:\FPS_Project\Assets\FMOD_Sounds\Build\Desktop\Master Bank.bank
+  lastModified: 636887043740000000
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 338272
+  Exists: 1
 --- !u!114 &114088439005549724
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,7 +275,7 @@ MonoBehaviour:
   Path: event:/Weapons/GunShot
   guid: 44c41c311e0cb746a9b1d7b66152c8aa
   Banks:
-  - {fileID: 114874501044590346}
+  - {fileID: 114087485455232256}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -328,12 +363,12 @@ MonoBehaviour:
   Path: event:/Weapons/RifleShot
   guid: b714d32af4c88e43b36c9270658b679b
   Banks:
-  - {fileID: 114874501044590346}
+  - {fileID: 114087485455232256}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 114853649889024576}
+  - {fileID: 114050134339474208}
   MinDistance: 1
   MaxDistance: 20
   Length: 480
@@ -402,6 +437,22 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 9500
+--- !u!114 &114269311499867012
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Automatic
+  Min: 0
+  Max: 1
+  Default: 0
 --- !u!114 &114290148183279834
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,7 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Path: Assets\FMOD_Sounds\Build\Desktop\Master Bank.strings.bank
-  lastModified: 636887043512975794
+  lastModified: 636887043740000000
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1349,7 +1400,7 @@ MonoBehaviour:
   Path: event:/Avatar/Walk
   guid: b1f097fb23669242a04bc7d4c811a4ed
   Banks:
-  - {fileID: 114874501044590346}
+  - {fileID: 114087485455232256}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
@@ -1619,6 +1670,25 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 14862
+--- !u!114 &114829829286879714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Path: F:\FPS_Project\Assets\FMOD_Sounds\Build\Desktop\Master Bank.bank
+  lastModified: 636887043740000000
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 338272
+  Exists: 1
 --- !u!114 &114838158346417214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1634,7 +1704,7 @@ MonoBehaviour:
   Path: event:/Avatar/Jump
   guid: e722a53d896f2a4c9b9b2f7314139888
   Banks:
-  - {fileID: 114874501044590346}
+  - {fileID: 114087485455232256}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1773,7 +1843,7 @@ MonoBehaviour:
   Path: event:/Avatar/Run
   guid: 8b7f8b211db3c840972aa4156debe6c7
   Banks:
-  - {fileID: 114874501044590346}
+  - {fileID: 114087485455232256}
   IsStream: 0
   Is3D: 1
   IsOneShot: 0

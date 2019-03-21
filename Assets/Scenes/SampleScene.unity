@@ -1203,6 +1203,27 @@ Transform:
   m_Father: {fileID: 410068982}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &940576134 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 761023565193541447, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+    type: 3}
+  m_PrefabInstance: {fileID: 761023565924850368}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &940576141
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940576134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eab7f6f7ba3d42a48899af390f139a91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToSwitchBetweenNormalAndAimMode: 0.35
+  fovInAimMode: 40
+  weaponPositionAfterAim: {x: 0, y: -0.27, z: -0.3}
 --- !u!1 &954313129
 GameObject:
   m_ObjectHideFlags: 0
