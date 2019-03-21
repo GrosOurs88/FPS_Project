@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Floor
+  - Teleporter
   layers:
   - Default
   - TransparentFX
