@@ -23,8 +23,20 @@ public class Weapon : MonoBehaviour
     //VFX
     public ParticleSystem fire;
     public GameObject impactEffect;
+
+
+    public ParticleSystem impactEffectPart;
+    private ParticleSystem.Particle[] impacts;
+    private int impactCount;
+    private int i = 0;
+
+
+    private ParticleSystem.Particle impact;
     public GameObject bulletEffect;
 
+
+
+    private ParticleSystem.Particle impactLast;
 
     //Camera
     public GameObject cam;
@@ -37,6 +49,8 @@ public class Weapon : MonoBehaviour
 
     void Start ()
     {
+        impactEffectPart.Play();
+
         
     }
 
@@ -46,11 +60,92 @@ public class Weapon : MonoBehaviour
         fire.Play();
         //bulletEffect.transform.LookAt(cam.transform.forward);
 
+        //impacts = impactEffectPart.GetParticles(impactEffectPart);
+        impacts = new ParticleSystem.Particle[impactEffectPart.particleCount];
+
         //RayCast 
         origin = new Vector3 (cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
+
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistanceHitScanShot))
         {
+            //Récupère le nombre de particules alive et copie le tableau de particles dans impacts.
+            impactCount = impactEffectPart.GetParticles(impacts);
+
+            
+
+            //IMPACT LAST DOESNT WORK 
+            /*
+            if (impacts[0].remainingLifetime == 10)
+                impactLast = impacts[0];
+            
+
+            //Prend la plus jeune particule
+            for(int i = 0; i < impactCount; i++)
+            {   
+                if (impactLast.remainingLifetime < impacts[i].remainingLifetime)
+                {
+                    impactLast = impacts[i];
+                }
+                //Set la position de la dernière particule
+                //impactLast.rotation3D = new Vector3 
+                
+            }*/
+
+            //Line below is working
+            //impacts[0].position = new Vector3 (impacts[0].position.x + 1, impacts[0].position.y, impacts[0].position.z);
+
+            //Line below is working
+            impacts[i].position = new Vector3 (hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100, hit.point.z + hit.normal.z / 100);
+            impacts[i].rotation3D = new Vector3 (hit.normal.x * 90, hit.normal.y * 90, hit.normal.z * 90);
+
+            print (hit.normal);
+            
+            //impactLast.position = new Vector3 (hit.point.x + hit.normal.x, hit.point.y + hit.normal.y, hit.point.z + hit.normal.z);           
+            impactEffectPart.SetParticles (impacts, 100000,i);
+            print (impacts[i].rotation3D);
+            // /!\ Counter jusqu'à l'infini /!\
+            i++;
+
+
+
+
+/*
+            impactEffectPart.Play();
+            //impacts = new ParticleSystem.Particle[impactEffectPart.particleCount];
+
+
+            
+            
+
+            print (impactEffectPart.particleCount);
+
+            if (impacts[0].remainingLifetime == 3)
+                impactLast = impacts[0];
+            
+                    
+            for(int i = 0; i <= impactCount; i++)
+            {   
+                
+                if (impactLast.remainingLifetime < impacts[i].remainingLifetime)
+                {
+                    print (impactLast);
+                    impactLast = impacts[i];
+                }
+                impactLast.position = hit.point;
+                impactEffectPart.SetParticles (impacts, 1, i);
+            }
+    */         
+            //print (hit.point + " AND " + impacts[0].position);
+            /*
+            if (impacts[0] != null)
+                impact = impacts[0];
+            if (impact != null)
+            {
+                print ("IMPACT");
+                impact.position = hit.position;
+                
+            }*/
             /*
             hitps.transform.position = hit.point;
             hitps.Play();
@@ -58,7 +153,7 @@ public class Weapon : MonoBehaviour
             //hitps.transform.rotation = hit.transform.rotation;
             hitps.transform.Rotate (hit.normal.x, hit.normal.y, hit.normal.z, Space.World);*/
 
-            Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
+            //Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
 
             damageable = hit.transform.GetComponent<Damageable>();
             if (damageable != null)
