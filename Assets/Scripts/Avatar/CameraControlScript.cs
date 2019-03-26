@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraControlScript : MonoBehaviour
 {
+    //********** SCRIPT A PLACER SUR LA CAMERA DE L'AVATAR **********
+
     // Sensibilité des axes
     public float sensitivityX;
     public float sensitivityY;

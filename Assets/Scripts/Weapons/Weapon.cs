@@ -4,20 +4,21 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    public float RPS = 10f; //RPS (Rounds per Minute)
+    //********** SCRIPT A PLACER SUR CHAQUE ARME **********
+
+    public float RPS = 10f;                       // RPS (Rounds per Minute)
 
     private float bulletDamage = 42;
-    private int magazineSize; //Taille du chargeur
-    private int magazineAmmo; //nombre de balles restantes dans le chargeur
-    private int carriedAmmo; //nombre de balles au total
-    private float maxDistanceHitScanShot = 100f;
-
+    private int magazineSize;                     // Taille du chargeur
+    private int magazineAmmo;                     // nombre de balles restantes dans le chargeur
+    private int carriedAmmo;                      // nombre de balles au total
+    private float maxDistanceHitScanShot = 1000f; // Distance max des bullets
 
     //Accuracy Calculator Variables . WIP
     public float accuracy = 0;
     private Vector3 origin;
     private Vector3 direction;
-    
+
     private GameObject bullet;
 
     //VFX
@@ -30,13 +31,19 @@ public class Weapon : MonoBehaviour
     private int impactCount;
     private int i = 0;
 
-
     private ParticleSystem.Particle impact;
     public GameObject bulletEffect;
 
-
-
     private ParticleSystem.Particle impactLast;
+
+    //Aim 
+    public float timeToSwitchBetweenNormalAndAimMode;          // Durée de transition de la visée 
+    public float fovInAimMode;                                 // FOV de l'arme en mode visé
+    public Vector3 weaponPositionAfterAim;                     // Position de l'arme en mode visé
+    [HideInInspector]
+    public float fovInNormalMode;                              // FOV de base de l'arme
+    [HideInInspector]
+    public Vector3 weaponPositionBeforeAim;                    // Position de base de l'arme
 
     //Camera
     public GameObject cam;
@@ -47,14 +54,18 @@ public class Weapon : MonoBehaviour
     //Damageable
     private Damageable damageable;
 
-    void Start ()
+    void Start()
     {
         impactEffectPart.Play();
 
-        
+        // FOV de la camera au start (normal mode)
+        fovInNormalMode = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView;
+
+        // Position de base de l'arme
+        weaponPositionBeforeAim = GetComponent<Transform>().localPosition;
     }
 
-    public void HitScanShot ()
+    public void HitScanShot()
     {
         //VFX
         fire.Play();
@@ -64,7 +75,7 @@ public class Weapon : MonoBehaviour
         impacts = new ParticleSystem.Particle[impactEffectPart.particleCount];
 
         //RayCast 
-        origin = new Vector3 (cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
+        origin = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
 
         if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistanceHitScanShot))
@@ -72,7 +83,7 @@ public class Weapon : MonoBehaviour
             //Récupère le nombre de particules alive et copie le tableau de particles dans impacts.
             impactCount = impactEffectPart.GetParticles(impacts);
 
-            
+
 
             //IMPACT LAST DOESNT WORK 
             /*
@@ -100,8 +111,8 @@ public class Weapon : MonoBehaviour
             //impactEffectPart.transform.rotation = rotation;
             
             //Below Work
-            impacts[i].position = new Vector3 (hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100, hit.point.z + hit.normal.z / 100);
-            //impacts[i].rotation3D = new Vector3 ((hit.normal.x + 1) * 180, (hit.normal.y + 1) * 180, (hit.normal.z + 1) * 180);        
+            impacts[i].position = new Vector3(hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100, hit.point.z + hit.normal.z / 100);
+            impacts[i].rotation3D = new Vector3(hit.normal.x * 90, hit.normal.y * 90, hit.normal.z * 90);
             
             
             //ANOTHER TRY DON'T WORK
@@ -129,43 +140,43 @@ public class Weapon : MonoBehaviour
             impacts[i].rotation = rotationValue;
             */
 
-            print (hit.normal);
-            
+            print(hit.normal);
+
             //impactLast.position = new Vector3 (hit.point.x + hit.normal.x, hit.point.y + hit.normal.y, hit.point.z + hit.normal.z);           
-            impactEffectPart.SetParticles (impacts, 100000,i);
-            print (impacts[i].rotation3D);
+            impactEffectPart.SetParticles(impacts, 100000, i);
+            print(impacts[i].rotation3D);
             // /!\ Counter jusqu'à l'infini /!\
             i++;
 
 
 
 
-/*
-            impactEffectPart.Play();
-            //impacts = new ParticleSystem.Particle[impactEffectPart.particleCount];
+            /*
+                        impactEffectPart.Play();
+                        //impacts = new ParticleSystem.Particle[impactEffectPart.particleCount];
 
 
-            
-            
 
-            print (impactEffectPart.particleCount);
 
-            if (impacts[0].remainingLifetime == 3)
-                impactLast = impacts[0];
-            
-                    
-            for(int i = 0; i <= impactCount; i++)
-            {   
-                
-                if (impactLast.remainingLifetime < impacts[i].remainingLifetime)
-                {
-                    print (impactLast);
-                    impactLast = impacts[i];
-                }
-                impactLast.position = hit.point;
-                impactEffectPart.SetParticles (impacts, 1, i);
-            }
-    */         
+
+                        print (impactEffectPart.particleCount);
+
+                        if (impacts[0].remainingLifetime == 3)
+                            impactLast = impacts[0];
+
+
+                        for(int i = 0; i <= impactCount; i++)
+                        {   
+
+                            if (impactLast.remainingLifetime < impacts[i].remainingLifetime)
+                            {
+                                print (impactLast);
+                                impactLast = impacts[i];
+                            }
+                            impactLast.position = hit.point;
+                            impactEffectPart.SetParticles (impacts, 1, i);
+                        }
+                */
             //print (hit.point + " AND " + impacts[0].position);
             /*
             if (impacts[0] != null)
@@ -191,20 +202,56 @@ public class Weapon : MonoBehaviour
                 //damageable.damageTaken = bulletDamage;
                 damageable.Damaged(bulletDamage);
             }
-        //if hit peux prendre des dégats
-        //transmettre à l'objet le nombre de points de vie correspondant (bulletDamage) // L'objet touché s'occupera de compter les degats etc.. 
-        }        
+            //if hit peux prendre des dégats
+            //transmettre à l'objet le nombre de points de vie correspondant (bulletDamage) // L'objet touché s'occupera de compter les degats etc.. 
+        }
     }
 
-    public void PhysicShot ()
+    public void PhysicShot()
     {
         //Instantier une bullet de la position de la caméra dans la direction de la caméra
         //Enlever une balle du chargeur
     }
 
-    public void Reload ()
+    public void Reload()
     {
         //if (carriedAmmo > 0)
         //Recharche le chargeur mdeir
     }
+
+    // Bouge la position de l'arme lors de la visée et baisse le FOV pour zoomer sur la cible
+    public IEnumerator Aim(float _fovInNormalMode, float _fovInAimMode, Vector3 _weaponPositionBeforeAim, Vector3 _weaponPositionAfterAim, float _timeToSwitchBetweenNormalAndAimMode)
+    {
+        Vector3 currentPos = _weaponPositionBeforeAim;
+        float t = 0f;
+        while (t < 1)
+        {
+            t += Time.deltaTime / _timeToSwitchBetweenNormalAndAimMode;
+
+            // Zoom
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = Mathf.Lerp(_fovInNormalMode, _fovInAimMode, t);
+
+            // Position arme
+            _weaponPositionBeforeAim = Vector3.Lerp(currentPos, _weaponPositionAfterAim, t);
+            yield return null;
+        }
+    }
+
+    // OLD
+    // Bouge la position de l'arme lors de la visée et baisse le FOV pour zoomer sur la cible
+    //public IEnumerator Aim (float fovActual, float fovToReach, Transform weaponTransform, Vector3 positionToReach, float timeToMove)
+    //{
+    //    Vector3 currentPos = weaponTransform.localPosition;
+    //    float t = 0f;
+    //    while (t < 1)
+    //    {
+    //        t += Time.deltaTime / timeToMove;
+
+    //        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = Mathf.Lerp(fovActual, fovToReach, t);
+
+    //        weaponTransform.localPosition = Vector3.Lerp(currentPos, positionToReach, t);    
+
+    //        yield return null;
+    //    }
+    //}  
 }

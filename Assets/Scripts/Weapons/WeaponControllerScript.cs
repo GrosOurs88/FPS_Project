@@ -4,38 +4,45 @@ using UnityEngine;
 
 public class WeaponControllerScript : MonoBehaviour
 {
-    public Weapon weapon;
-    public GameObject weaponGO;
+    //********** SCRIPT A PLACER SUR L'AVATAR **********
 
-    private float timeFireRate;
+    public Weapon weapon;                                      // Classe "Weapon" des armes
+    public GameObject weaponGO;                                // L'arme actuellement en main  
 
+    private float timeFireRate;                                // FireRate de l'arme
 
-    void Start()
+    private void Start()
     {
+        // Va cherche l'arme actuellement en main
         weapon = GetComponentInChildren(typeof(Weapon)) as Weapon;
     }
- 
+
     void Update()
     {
-        // Si on appuye sur l'input de tir //GETBUTTON DOWN !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! (must be GetButton())
+        // Si on appuye sur l'input de tir
         if (Input.GetButton("Fire") && timeFireRate >= 1 / weapon.RPS)
         {
             weapon.HitScanShot();
             timeFireRate = 0;
-
-
-            // *** Code pour tirer une bullet au centre de l'écran, quel que soit la distance à laquelle se situe la cible ***
-
-            // 1 - Lancer un Raycast qui part du centre de la caméra, droit devant
-            // 2 - Récupérer le point d'impact du raycast (cible)
-            // 3 - Faire partir une balle depuis le canon de l'arme, jusqu'à la cible
-
-            // *** Fin du code ***
 
             // On joue le son de tir de l'arme
             FMODUnity.RuntimeManager.PlayOneShot("event:/Weapons/GunShot", transform.localPosition);
         }
         if (timeFireRate < 1 / weapon.RPS)
             timeFireRate += Time.deltaTime;
-    }
+
+        // Si Clic droit souris enfoncé
+        if (Input.GetMouseButtonDown(1))
+        {
+            // FOV et emplacement de l'arme changent
+            weapon.StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInNormalMode, weapon.fovInAimMode, weapon.weaponPositionBeforeAim, weapon.weaponPositionAfterAim, weapon.timeToSwitchBetweenNormalAndAimMode));
+        }
+
+        // Si Clic droit souris relâché
+        if (Input.GetMouseButtonUp(1))
+        {
+            // FOV et emplacement arme reviennent à leur positions normales
+            weapon.StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInAimMode, weapon.fovInNormalMode, weapon.weaponPositionAfterAim, weapon.weaponPositionBeforeAim, weapon.timeToSwitchBetweenNormalAndAimMode));
+        }
+    }   
 }
