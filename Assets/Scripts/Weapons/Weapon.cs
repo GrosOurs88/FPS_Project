@@ -95,9 +95,39 @@ public class Weapon : MonoBehaviour
             //Line below is working
             //impacts[0].position = new Vector3 (impacts[0].position.x + 1, impacts[0].position.y, impacts[0].position.z);
 
-            //Line below is working
+            //ROTATE THE EMITTER CAN'T WORK WITH THE POOLING SYSTEM
+            //Quaternion rotation = Quaternion.LookRotation(hit.normal, Vector3.up);
+            //impactEffectPart.transform.rotation = rotation;
+            
+            //Below Work
             impacts[i].position = new Vector3 (hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100, hit.point.z + hit.normal.z / 100);
-            impacts[i].rotation3D = new Vector3 (hit.normal.x * 90, hit.normal.y * 90, hit.normal.z * 90);
+            //impacts[i].rotation3D = new Vector3 ((hit.normal.x + 1) * 180, (hit.normal.y + 1) * 180, (hit.normal.z + 1) * 180);        
+            
+            
+            //ANOTHER TRY DON'T WORK
+            /*
+            float rotationValue = 0;
+            if (hit.normal.x != 0)
+            {
+                impacts[i].axisOfRotation = Vector3.up;
+                rotationValue = hit.normal.x;
+                impactEffectPart.SetParticles (impacts, 100000,i);
+            }
+            else if (hit.normal.y != 0)
+            {
+                impacts[i].axisOfRotation = Vector3.right;
+                rotationValue = hit.normal.y;
+                impactEffectPart.SetParticles (impacts, 100000,i);
+            }
+            else //(hit.normal.z != 0)
+            {
+                impacts[i].axisOfRotation = Vector3.up;
+                rotationValue = hit.normal.z;
+                impactEffectPart.SetParticles (impacts, 100000,i);
+            }
+            
+            impacts[i].rotation = rotationValue;
+            */
 
             print (hit.normal);
             
