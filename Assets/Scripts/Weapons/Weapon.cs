@@ -6,20 +6,20 @@ public class Weapon : MonoBehaviour
 {
     //********** SCRIPT A PLACER SUR CHAQUE ARME **********
 
-    public float RPS = 10f;                       // RPS (Rounds per Minute)
+    public float RPS = 10f;                               // RPS (Rounds per Minute)
 
-    private float bulletDamage = 42;
-    private int magazineSize;                     // Taille du chargeur
-    private int magazineAmmo;                     // nombre de balles restantes dans le chargeur
-    private int carriedAmmo;                      // nombre de balles au total
-    private float maxDistanceHitScanShot = 1000f; // Distance max des bullets
+    private float bulletDamage = 42;                      // Dégâts de base de l'arme
+    private int magazineSize;                             // Taille du chargeur
+    private int magazineAmmo;                             // nombre de balles restantes dans le chargeur
+    private int carriedAmmo;                              // nombre de balles au total
+    private float maxDistanceHitScanShot = 1000f;         // Distance max des bullets
 
     //Accuracy Calculator Variables . WIP
-    public float accuracy = 0;
+    public float accuracy = 0;                            // Précision de base de l'arme            
     private Vector3 origin;
     private Vector3 direction;
 
-    private GameObject bullet;
+    private GameObject bullet;                            // Prefab de balle
 
     //VFX
     public ParticleSystem fire;
