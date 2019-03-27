@@ -222,38 +222,24 @@ public class Weapon : MonoBehaviour
     }
 
     // Bouge la position de l'arme lors de la visée et baisse le FOV pour zoomer sur la cible
-    public IEnumerator Aim(float _fovInNormalMode, float _fovInAimMode, Vector3 _weaponPositionBeforeAim, Vector3 _weaponPositionAfterAim, float _timeToSwitchBetweenNormalAndAimMode)
+    public IEnumerator Aim(float _fovToReach, Vector3 _positionToReach, float _timeToMove)
     {
-        Vector3 currentPos = _weaponPositionBeforeAim;
+        Vector3 currentPos = GetComponent<Transform>().localPosition;
+
+        float actualFOV = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView;
+
         float t = 0f;
         while (t < 1)
         {
-            t += Time.deltaTime / _timeToSwitchBetweenNormalAndAimMode;
+            t += Time.deltaTime / _timeToMove;
 
             // Zoom
-            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = Mathf.Lerp(_fovInNormalMode, _fovInAimMode, t);
+            GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = Mathf.Lerp(actualFOV, _fovToReach, t);
 
             // Position arme
-            _weaponPositionBeforeAim = Vector3.Lerp(currentPos, _weaponPositionAfterAim, t);
+            GetComponent<Transform>().localPosition = Vector3.Lerp(currentPos, _positionToReach, t);
+
             yield return null;
         }
     }
-
-    // OLD
-    // Bouge la position de l'arme lors de la visée et baisse le FOV pour zoomer sur la cible
-    //public IEnumerator Aim (float fovActual, float fovToReach, Transform weaponTransform, Vector3 positionToReach, float timeToMove)
-    //{
-    //    Vector3 currentPos = weaponTransform.localPosition;
-    //    float t = 0f;
-    //    while (t < 1)
-    //    {
-    //        t += Time.deltaTime / timeToMove;
-
-    //        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = Mathf.Lerp(fovActual, fovToReach, t);
-
-    //        weaponTransform.localPosition = Vector3.Lerp(currentPos, positionToReach, t);    
-
-    //        yield return null;
-    //    }
-    //}  
 }

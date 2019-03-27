@@ -35,14 +35,14 @@ public class WeaponControllerScript : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             // FOV et emplacement de l'arme changent
-            weapon.StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInNormalMode, weapon.fovInAimMode, weapon.weaponPositionBeforeAim, weapon.weaponPositionAfterAim, weapon.timeToSwitchBetweenNormalAndAimMode));
+            StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInAimMode, weapon.weaponPositionAfterAim, weapon.timeToSwitchBetweenNormalAndAimMode));
         }
 
         // Si Clic droit souris relâché
         if (Input.GetMouseButtonUp(1))
         {
-            // FOV et emplacement arme reviennent à leur positions normales
-            weapon.StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInAimMode, weapon.fovInNormalMode, weapon.weaponPositionAfterAim, weapon.weaponPositionBeforeAim, weapon.timeToSwitchBetweenNormalAndAimMode));
+            // FOV et emplacement de l'arme changent
+            StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInNormalMode, weapon.weaponPositionBeforeAim, weapon.timeToSwitchBetweenNormalAndAimMode));
         }
     }   
 }
