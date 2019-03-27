@@ -83,7 +83,9 @@ public class Weapon : MonoBehaviour
             //Récupère le nombre de particules alive et copie le tableau de particles dans impacts.
             impactCount = impactEffectPart.GetParticles(impacts);
 
-
+            Quaternion rotation = Quaternion.LookRotation (-hit.normal, Vector3.up);
+            Instantiate (impactEffectPart, new Vector3 (hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100,hit.point.z + hit.normal.z / 100), rotation);
+            impactEffectPart.Play();
 
             //IMPACT LAST DOESNT WORK 
             /*
@@ -111,8 +113,8 @@ public class Weapon : MonoBehaviour
             //impactEffectPart.transform.rotation = rotation;
             
             //Below Work
-            impacts[i].position = new Vector3(hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100, hit.point.z + hit.normal.z / 100);
-            impacts[i].rotation3D = new Vector3(hit.normal.x * 90, hit.normal.y * 90, hit.normal.z * 90);
+            //impacts[i].position = new Vector3(hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100, hit.point.z + hit.normal.z / 100);
+            //impacts[i].rotation3D = new Vector3(hit.normal.x * 90, hit.normal.y * 90, hit.normal.z * 90);
             
             
             //ANOTHER TRY DON'T WORK
@@ -140,7 +142,7 @@ public class Weapon : MonoBehaviour
             impacts[i].rotation = rotationValue;
             */
 
-            print(hit.normal);
+/*         print(hit.normal);
 
             //impactLast.position = new Vector3 (hit.point.x + hit.normal.x, hit.point.y + hit.normal.y, hit.point.z + hit.normal.z);           
             impactEffectPart.SetParticles(impacts, 100000, i);
@@ -148,7 +150,7 @@ public class Weapon : MonoBehaviour
             // /!\ Counter jusqu'à l'infini /!\
             i++;
 
-
+*/
 
 
             /*

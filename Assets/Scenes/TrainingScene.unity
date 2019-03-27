@@ -84808,6 +84808,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1966741116}
   m_Mesh: {fileID: 680896130}
+--- !u!1 &1966817972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2605434621779353174, guid: c08bc5efd65b57845949d3b0d043fbaf,
+    type: 3}
+  m_PrefabInstance: {fileID: 2077467281}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1966817975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1966817972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b245e891d7db244f96dfcf60f815f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!43 &1969838462
 Mesh:
   m_ObjectHideFlags: 0
@@ -89514,7 +89532,7 @@ PrefabInstance:
     - target: {fileID: 2605434621779353173, guid: c08bc5efd65b57845949d3b0d043fbaf,
         type: 3}
       propertyPath: InitialModule.startSize.scalar
-      value: 1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 2605434621779353172, guid: c08bc5efd65b57845949d3b0d043fbaf,
         type: 3}
@@ -89524,7 +89542,7 @@ PrefabInstance:
     - target: {fileID: 2605434621779353172, guid: c08bc5efd65b57845949d3b0d043fbaf,
         type: 3}
       propertyPath: m_RenderAlignment
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2605434621779353172, guid: c08bc5efd65b57845949d3b0d043fbaf,
         type: 3}
