@@ -53682,6 +53682,11 @@ PrefabInstance:
       propertyPath: moveWithTransform
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 761023565865946624, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.001
+      objectReference: {fileID: 0}
     - target: {fileID: 761023565865946750, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -53690,7 +53695,12 @@ PrefabInstance:
     - target: {fileID: 761023565865946750, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.3003
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761023565865946750, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 761023565865946751, guid: e16abd6f890753544aeb77b6fb4c2cf5,
         type: 3}
@@ -53865,6 +53875,29 @@ PrefabInstance:
     - target: {fileID: 1395360047, guid: e16abd6f890753544aeb77b6fb4c2cf5, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580074128, guid: e16abd6f890753544aeb77b6fb4c2cf5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1580074128, guid: e16abd6f890753544aeb77b6fb4c2cf5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761023565722612105, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1282
+      objectReference: {fileID: 0}
+    - target: {fileID: 761023565722612105, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 761023565722612105, guid: e16abd6f890753544aeb77b6fb4c2cf5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e16abd6f890753544aeb77b6fb4c2cf5, type: 3}
@@ -54729,7 +54762,7 @@ ParticleSystemRenderer:
   m_MaxParticleSize: 0.5
   m_CameraVelocityScale: 0
   m_VelocityScale: 0
-  m_LengthScale: 1
+  m_LengthScale: 10
   m_SortingFudge: 0
   m_NormalDirection: 0
   m_ShadowBias: 0
@@ -54739,7 +54772,7 @@ ParticleSystemRenderer:
   m_UseCustomVertexStreams: 0
   m_EnableGPUInstancing: 1
   m_ApplyActiveColorSpace: 1
-  m_AllowRoll: 1
+  m_AllowRoll: 0
   m_VertexStreams: 00010304
   m_Mesh: {fileID: 0}
   m_Mesh1: {fileID: 0}
@@ -54762,10 +54795,10 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
-  useRigidbodyForVelocity: 1
+  useRigidbodyForVelocity: 0
   startDelay:
     serializedVersion: 2
     minMaxState: 0
@@ -54882,8 +54915,8 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
-      minScalar: 2
+      scalar: 1
+      minScalar: 0.1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -54998,8 +55031,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.1
-      minScalar: 0.05
+      scalar: 0.05
+      minScalar: 0.01
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -55263,7 +55296,7 @@ ParticleSystem:
     startRotation:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1.5707963
+      scalar: 0
       minScalar: 0
       maxCurve:
         serializedVersion: 2
@@ -55373,7 +55406,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 10
     angle: 30
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -55460,7 +55493,7 @@ ParticleSystem:
     sphericalDirectionAmount: 0
     randomPositionAmount: 0
     radius:
-      value: 0.0001
+      value: 0.03
       mode: 0
       spread: 0
       speed:
@@ -55518,7 +55551,7 @@ ParticleSystem:
           m_RotationOrder: 4
     arc:
       value: 360
-      mode: 0
+      mode: 3
       spread: 0
       speed:
         serializedVersion: 2
