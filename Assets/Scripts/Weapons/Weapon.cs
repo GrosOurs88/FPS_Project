@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     private int carriedAmmo;                              // nombre de balles au total
     private float maxDistanceHitScanShot = 1000f;         // Distance max des bullets
 
+    public GameObject bulletEffet;
+
     //Accuracy Calculator Variables . WIP
     public float accuracy = 0;                            // Précision de base de l'arme            
     private Vector3 origin;
