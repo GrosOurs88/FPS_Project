@@ -17,7 +17,7 @@ public class Weapon : MonoBehaviour
     public GameObject bulletEffet;
 
     //Accuracy Calculator Variables . WIP
-    public float accuracy = 0;                            // Précision de base de l'arme            
+    public float accuracy = 1;                            // Précision de base de l'arme            
     private Vector3 origin;
     private Vector3 direction;
 
@@ -80,7 +80,7 @@ public class Weapon : MonoBehaviour
         origin = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
 
-        if (Physics.Raycast(cam.transform.position, cam.transform.forward, out hit, maxDistanceHitScanShot))
+        if (Physics.Raycast(origin, cam.transform.forward, out hit, maxDistanceHitScanShot))
         {
             //Récupère le nombre de particules alive et copie le tableau de particles dans impacts.
             impactCount = impactEffectPart.GetParticles(impacts);
