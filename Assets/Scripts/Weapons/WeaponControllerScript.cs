@@ -11,10 +11,18 @@ public class WeaponControllerScript : MonoBehaviour
 
     private float timeFireRate;                                // FireRate de l'arme
 
+    Weapon.AimParameters paramIn;
+    Weapon.AimParameters paramOut;
+
+    Coroutine coroutineAim;
+
     private void Start()
     {
         // Va cherche l'arme actuellement en main
         weapon = GetComponentInChildren(typeof(Weapon)) as Weapon;
+
+        paramIn = new Weapon.AimParameters(weapon.fovInAimMode, weapon.weaponPositionAfterAim);
+        paramOut = new Weapon.AimParameters(weapon.fovInNormalMode, weapon.weaponPositionBeforeAim);        
     }
 
     void Update()
@@ -34,15 +42,22 @@ public class WeaponControllerScript : MonoBehaviour
         // Si Clic droit souris enfoncé
         if (Input.GetMouseButtonDown(1))
         {
-            // FOV et emplacement de l'arme changent
-            StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInAimMode, weapon.weaponPositionAfterAim, weapon.timeToSwitchBetweenNormalAndAimMode));
+            MoveFOV(paramIn);           
         }
 
         // Si Clic droit souris relâché
         if (Input.GetMouseButtonUp(1))
         {
-            // FOV et emplacement de l'arme changent
-            StartCoroutine(weapon.GetComponent<Weapon>().Aim(weapon.fovInNormalMode, weapon.weaponPositionBeforeAim, weapon.timeToSwitchBetweenNormalAndAimMode));
+            MoveFOV(paramOut);
         }
     }   
+
+    public void MoveFOV(Weapon.AimParameters MoveFOVParam)
+    {
+        if(coroutineAim != null)
+        {
+            StopCoroutine(coroutineAim);
+        }
+        coroutineAim = StartCoroutine(weapon.Aim(MoveFOVParam));
+    }
 }
