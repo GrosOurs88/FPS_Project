@@ -221,28 +221,35 @@ public class Weapon : MonoBehaviour
         //Recharche le chargeur mdeir
     }
 
-    // Bouge la position de l'arme lors de la visée et baisse le FOV pour zoomer sur la cible
+    // Zoom 
+    // Zoom In = Bouge la position de l'arme devant la camera et baisse le FOV pour faire un zoom
+    // Zoom Out = Replace l'arme à sa position initiale et reset le FOV initial
     public IEnumerator Aim(AimParameters param)
     {
+        // Position actuelle de l'arme
         Vector3 currentPos = GetComponent<Transform>().localPosition;
 
+        // FOV actuel de l'arme
         float actualFOV = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView;
 
+        // Set une timeline
         float t = 0f;
         while (t < 1)
         {
+            // Bouge dans la timeline entre 0 et la valeur totale de l'action (timeToSwitchBetweenNormalAndAimMode)
             t += Time.deltaTime / timeToSwitchBetweenNormalAndAimMode;
 
-            // Zoom
+            // Zoom = Lerp le FOV entre la valeur actuelle et la valeur à atteindre
             GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = Mathf.Lerp(actualFOV, param.FOVToReach, t);
 
-            // Position arme
+            // Arme se déplace entre sa position actuelle et la position à atteindre
             GetComponent<Transform>().localPosition = Vector3.Lerp(currentPos, param.positionToReach, t);
 
             yield return null;
         }
     }
 
+    // Struct consacrée au Zoom (deux paramètres : un FOV et un Vector3)
     public struct AimParameters
     {
         public float FOVToReach;
@@ -254,27 +261,4 @@ public class Weapon : MonoBehaviour
             positionToReach = _positionToreach;
         }
     }
-
-    //******* OLD VERSION *******
-    //// Bouge la position de l'arme lors de la visée et baisse le FOV pour zoomer sur la cible
-    //public IEnumerator Aim(float _fovToReach, Vector3 _positionToReach, float _timeToMove)
-    //{
-    //    Vector3 currentPos = GetComponent<Transform>().localPosition;
-
-    //    float actualFOV = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView;
-
-    //    float t = 0f;
-    //    while (t < 1)
-    //    {
-    //        t += Time.deltaTime / _timeToMove;
-
-    //        // Zoom
-    //        GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>().fieldOfView = Mathf.Lerp(actualFOV, _fovToReach, t);
-
-    //        // Position arme
-    //        GetComponent<Transform>().localPosition = Vector3.Lerp(currentPos, _positionToReach, t);
-
-    //        yield return null;
-    //    }
-    //}
 }
