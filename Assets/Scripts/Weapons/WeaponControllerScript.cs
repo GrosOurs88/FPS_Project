@@ -28,8 +28,8 @@ public class WeaponControllerScript : MonoBehaviour
 
     void Update()
     {
-        // Si on appuye sur l'input de tir
-        if (Input.GetButton("Fire") && timeFireRate >= 1 / weapon.RPS)
+        // Si on appuye sur l'input de tir et que le fireRate a été atteind et que l'arme a encore des munitions et qu'elle n'est pas en train d'être rechargée
+        if (Input.GetButton("Fire") && timeFireRate >= 1 / weapon.RPS && weapon.magazineAmmo > 0 && !weapon.isReloading)
         {
             weapon.HitScanShot();
             timeFireRate = 0;
@@ -41,20 +41,36 @@ public class WeaponControllerScript : MonoBehaviour
         if (timeFireRate < 1 / weapon.RPS)
             timeFireRate += Time.deltaTime;
 
-        // Si Clic droit souris enfoncé
-        if (Input.GetMouseButtonDown(1))
+
+        // Si clic droit souris enfoncé et que l'arme n'est pas en train d'être rechargée
+        if (Input.GetMouseButtonDown(1) && !weapon.isReloading)
         {
             // Zoom avec paramètres de zoom max de l'arme
-            MoveFOV(paramIn);           
+            MoveFOV(paramIn);
+
+            // Modifie la sensibilité de la caméra
+            GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityX = GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityX / weapon.multiplierCameraSensibilityWhenAim;
+            GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityY = GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityY / weapon.multiplierCameraSensibilityWhenAim;
         }
 
-        // Si Clic droit souris relâché
+        // Si clic droit souris relâché
         if (Input.GetMouseButtonUp(1))
         {
             // Zoom reviens vers valeurs initiales (de base) de l'arme
             MoveFOV(paramOut);
+
+            // Reset la sensibilité de la caméra à la normale
+            GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityX = GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityX * weapon.multiplierCameraSensibilityWhenAim;
+            GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityY = GameObject.Find("Main Camera").GetComponent<CameraControlScript>().sensitivityY * weapon.multiplierCameraSensibilityWhenAim;
         }
-    }   
+
+        // Si touche "R" enfoncée et que le chargeur n'est pas déjà plein et que l'arme n'est pas déjà en train d'être rechargée et qu'il reste des munitions en reserve et que l'arme n'est pas en position de visée
+        if (Input.GetKeyDown(KeyCode.R) && weapon.magazineAmmo != weapon.magazineSize && !weapon.isReloading && weapon.carriedAmmo > 0 && !Input.GetMouseButton(1))
+        {
+            // Recharge l'arme
+            StartCoroutine(weapon.Reload());
+        }
+    }
 
     // Permet de stopper la coroutine de zoom pendant son execution et d'en lancer une autre
     public void MoveFOV(Weapon.AimParameters MoveFOVParam)

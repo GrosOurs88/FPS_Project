@@ -10,7 +10,7 @@ public class AlignWithParent : MonoBehaviour
     void Start()
     {
         cam = GetComponentInParent<Camera>();
-        print (cam.gameObject.name);
+        // print (cam.gameObject.name);
         
     }
 

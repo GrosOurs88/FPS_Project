@@ -9,9 +9,13 @@ public class Weapon : MonoBehaviour
     public float RPS = 10f;                               // RPS (Rounds per Minute)
 
     private float bulletDamage = 42;                      // Dégâts de base de l'arme
-    private int magazineSize;                             // Taille du chargeur
-    private int magazineAmmo;                             // nombre de balles restantes dans le chargeur
-    private int carriedAmmo;                              // nombre de balles au total
+    public int magazineSize;                              // Taille du chargeur
+    [HideInInspector]
+    public int magazineAmmo;                              // nombre de balles restantes dans le chargeur
+    [HideInInspector]
+    public int carriedAmmo;                               // nombre de balles en réserve
+    public int carriedAmmoAtStart;                        // nombre de balles en réserve en début de partie
+    public int maxCarriedAmmo;                            // nombre maximal de balles en reserve pouvant être portées par l'avatar
     private float maxDistanceHitScanShot = 1000f;         // Distance max des bullets
 
     public GameObject bulletEffet;
@@ -44,6 +48,16 @@ public class Weapon : MonoBehaviour
     public Vector3 weaponPositionAfterAim;                     // Position de l'arme en mode visé
     public float fovInNormalMode;                              // FOV de base de l'arme
     public Vector3 weaponPositionBeforeAim;                    // Position de base de l'arme
+    public float multiplierCameraSensibilityWhenAim;           // Multiplicateur de sensibilité de la camera en mode visée
+
+    //Reload
+    public float timeToReloadWeapon;                           // Durée de recharge de l'arme
+    public Vector3 weaponPositionDuringReload;                 // Position de l'arme pendant rechargement
+    [HideInInspector]
+    public bool isReloading = false;                           // L'arme est-elle en train d'être rechargée ?
+
+    //Scripts
+    UIScript UIS;                                              // Script de l'UI
 
     //Camera
     public GameObject cam;
@@ -63,6 +77,15 @@ public class Weapon : MonoBehaviour
 
         // Position de base de l'arme
         weaponPositionBeforeAim = GetComponent<Transform>().localPosition;
+
+        // Va chercher le script de l'UI dans le "MasterUI"
+        UIS = GameObject.Find("MasterUI").GetComponent<UIScript>();
+
+        // Le nombre de balles dans le chargeur est égal au nombre de balles max dans un chargeur (chargeur plein)
+        magazineAmmo = magazineSize;
+
+        // Le nombre de balles en réserve est set
+        carriedAmmo = carriedAmmoAtStart;
     }
 
     public void HitScanShot()
@@ -77,6 +100,10 @@ public class Weapon : MonoBehaviour
         //RayCast 
         origin = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
+        // Enleve une balle du chargeur
+        magazineAmmo -= 1;
+        // Met à jour le nombre de balles restantes
+        UIS.ShowAmmunitions();
 
         if (Physics.Raycast(origin, cam.transform.forward, out hit, maxDistanceHitScanShot))
         {
@@ -209,16 +236,48 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    public void PhysicShot()
+    public IEnumerator Reload()
     {
-        //Instantier une bullet de la position de la caméra dans la direction de la caméra
-        //Enlever une balle du chargeur
-    }
+        // L'arme est en train d'être rechargée
+        isReloading = true;
 
-    public void Reload()
-    {
-        //if (carriedAmmo > 0)
-        //Recharche le chargeur mdeir
+        // Joue le son de rechargement de l'arme
+        FMODUnity.RuntimeManager.PlayOneShot("event:/Weapons/Reload");
+
+        // Le nombre de munitions à remplacer = nombre de balles d'un chargeur - nombre de balles restantes dans le chargeur actuel
+        int numberOfBulletsToExchange = magazineSize - magazineAmmo;
+
+        // Position de recharge de l'arme
+        GetComponent<Transform>().localPosition = weaponPositionDuringReload;
+        
+        // Attend le temps du rechargement de l'arme
+        yield return new WaitForSeconds(timeToReloadWeapon);
+
+        // Position de base de l'arme
+        GetComponent<Transform>().localPosition = weaponPositionBeforeAim;
+
+        // Si l'avatar a suffisamment de balles en reserve pour remplir un chargeur entier
+        if (carriedAmmo >= (numberOfBulletsToExchange))
+        {
+            // on ajoute les balles au chargeur et on les enleve de la reserve
+            magazineAmmo += numberOfBulletsToExchange;
+            carriedAmmo -= numberOfBulletsToExchange;
+        }
+        // Sinon, on met le reste des balles en reserve dans le chargeur
+        else
+        {
+            magazineAmmo += carriedAmmo;
+            carriedAmmo -= carriedAmmo;
+        }
+
+        // Met à jour le nombre de balles restantes dans l'UI
+        UIS.ShowAmmunitions();
+
+        // Met à jour le nombre de balles en réserve dans l'UI
+        UIS.ShowReserveAmmunitions();
+
+        // L'arme n'est plus en train d'être rechargée
+        isReloading = false;
     }
 
     // Zoom 

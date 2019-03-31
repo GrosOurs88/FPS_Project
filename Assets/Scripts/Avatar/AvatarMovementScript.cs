@@ -27,12 +27,16 @@ public class AvatarMovementScript : MonoBehaviour
     [HideInInspector]
     public bool gamePaused = false;                  // Le jeu est-il en pause ?
 
-
     // CANVAS -------------------------------------------------
     public Canvas canvasQuit;                        // Canvas a afficher quand on appuye sur start
 
     // GAMEOBJECTS --------------------------------------------
     public GameObject mainCamera;
+
+    // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
+    UIScript UIS;
+    // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
+
 
     void Start()
     {
@@ -46,6 +50,10 @@ public class AvatarMovementScript : MonoBehaviour
         
         // Taille égale à la moitié de la taille du collider de l'avatar (.extents.y)
         distToGround = GetComponent<Collider>().bounds.extents.y;
+
+        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
+        UIS = GameObject.Find("MasterUI").GetComponent<UIScript>();
+        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
     }
 
     void Update()
@@ -53,52 +61,20 @@ public class AvatarMovementScript : MonoBehaviour
         // TODO - Sortir les inputs des fonctions. 
         Move();
         Jump();
+        Crouch();
         // Pause();
+
+
+
+        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            GetComponent<AvatarHealthScript>().actualHealth -= 20;
+            UIS.ShowHealth();
+        }
+        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
     }
 
-    //void Pause ()
-    //{
-    //    // Quand le jeu est en pause
-    //    if (gamePaused)
-    //    {
-    //        // si appuye sur bouton action (jump)
-    //        if (Input.GetButtonDown("Jump"))
-    //        {
-    //            Application.Quit();
-    //        }
-
-    //        // si appuye sur le bouton retour
-    //        if (Input.GetButtonDown("Return"))
-    //        {
-    //            // désactive canvas pause
-    //            gamePaused = false;
-    //            canvasQuit.GetComponent<Canvas>().enabled = false;
-
-    //            // Désactive le freeze de la pause
-    //            Time.timeScale = 1;
-
-    //            // Joue le son de pause (pas encore intégré)
-    //            //FMODUnity.RuntimeManager.PlayOneShot("event:/Events/Pause");
-    //        }
-    //    }
-
-    //    // Quand on appuye sur start et que jeu n'est pas encore en pause
-    //    if (Input.GetButtonDown("Start") && !gamePaused)
-    //    {
-    //        // Met le jeu en pause (freeze)
-    //        Time.timeScale = 0;
-
-    //        // active canvas pause
-    //        gamePaused = true;
-    //        canvasQuit.GetComponent<Canvas>().enabled = true;
-
-    //        // Joue le son de pause (pas encore intégré)
-    //        //FMODUnity.RuntimeManager.PlayOneShot("event:/Event/Pause");
-    //    }
-
-    //    
-    //}
-    
     void Jump ()
     {
         // Si on touche le sol
@@ -178,9 +154,79 @@ public class AvatarMovementScript : MonoBehaviour
         }
     }
 
+    // Accroupissement
+    public void Crouch()
+    {
+        // Si on appuye sur Ctrl Left
+        if(Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            // On modifie les propriétés du collider pour pouvoir s'abaisser
+            GetComponent<CapsuleCollider>().height = 1f;
+            GetComponent<CapsuleCollider>().center = new Vector3 (0f, 0.4f, 0f);
+            // On se baisse (de la moitié de la hauteur de l'avatar)
+            transform.localPosition = new Vector3 (transform.localPosition.x, transform.localPosition.y - GetComponent<Collider>().bounds.size.y, transform.localPosition.z);
+        }
+
+        // Sinon si on relâche Ctrl Left
+        else if(Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            // On se redresse
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y + GetComponent<Collider>().bounds.size.y, transform.localPosition.z);
+            // On rétablit les propriétés de base du collider
+            GetComponent<CapsuleCollider>().height = 2f;
+            GetComponent<CapsuleCollider>().center = new Vector3(0f, 0f, 0f);
+        }
+    }
+
     // Vérifie si l'avatar est au sol (sur n'importe quel élément) ou pas
     public bool IsGrounded()
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
     }
+
+
+
+
+    //void Pause ()
+    //{
+    //    // Quand le jeu est en pause
+    //    if (gamePaused)
+    //    {
+    //        // si appuye sur bouton action (jump)
+    //        if (Input.GetButtonDown("Jump"))
+    //        {
+    //            Application.Quit();
+    //        }
+
+    //        // si appuye sur le bouton retour
+    //        if (Input.GetButtonDown("Return"))
+    //        {
+    //            // désactive canvas pause
+    //            gamePaused = false;
+    //            canvasQuit.GetComponent<Canvas>().enabled = false;
+
+    //            // Désactive le freeze de la pause
+    //            Time.timeScale = 1;
+
+    //            // Joue le son de pause (pas encore intégré)
+    //            //FMODUnity.RuntimeManager.PlayOneShot("event:/Events/Pause");
+    //        }
+    //    }
+
+    //    // Quand on appuye sur start et que jeu n'est pas encore en pause
+    //    if (Input.GetButtonDown("Start") && !gamePaused)
+    //    {
+    //        // Met le jeu en pause (freeze)
+    //        Time.timeScale = 0;
+
+    //        // active canvas pause
+    //        gamePaused = true;
+    //        canvasQuit.GetComponent<Canvas>().enabled = true;
+
+    //        // Joue le son de pause (pas encore intégré)
+    //        //FMODUnity.RuntimeManager.PlayOneShot("event:/Event/Pause");
+    //    }
+
+    //    
+    //}
 }
