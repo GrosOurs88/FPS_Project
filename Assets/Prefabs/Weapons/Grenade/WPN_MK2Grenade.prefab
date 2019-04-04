@@ -86,14 +86,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5787967765494650162}
-  - component: {fileID: 5787967765485632210}
   m_Layer: 0
   m_Name: WPN_MK2Grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5787967765494650162
 Transform:
   m_ObjectHideFlags: 0
@@ -111,25 +110,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &5787967765485632210
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5787967765495138578}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: bc47d6d03a2cd0b4ab4297dfd2edfe5f, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5787967765495138580
 GameObject:
   m_ObjectHideFlags: 0
