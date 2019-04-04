@@ -4,18 +4,16 @@ using UnityEngine;
 
 public class EffectsScript : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
         
     }
 
-    // Update is called once per frame
     void Update()
     {
         
     }
-
 
     public void BigBullets()
     {
@@ -27,7 +25,9 @@ public class EffectsScript : MonoBehaviour
 
     }
 
+    public void BouncingBullets()
+    {
 
-    public void 
+    }
 
 }
