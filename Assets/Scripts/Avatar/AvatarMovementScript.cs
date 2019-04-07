@@ -7,36 +7,31 @@ public class AvatarMovementScript : MonoBehaviour
     //********** SCRIPT A PLACER SUR L'AVATAR **********
 
     // VARIABLES GAMEPLAY -------------------------------------
-    public float speed;                              // Vitesse de déplacement de l'avatar
-    public float speedMultiplier;                    // Multiplicateur de vitesse quand l'avatar court
+    public float speed;                                  // Vitesse de déplacement de l'avatar
+    public float speedMultiplier;                        // Multiplicateur de vitesse quand l'avatar court
     public float jumpForce;
     private Rigidbody rb;
     private float horizontalMove;
     private float verticalMove;
-    float distToGround;
+    private float distToGround;
 
     // VARIABLES SON ------------------------------------------
-    public string WalkLowPlayer_snd;                 // Son de marche
+    public string WalkLowPlayer_snd;                      // Son de marche (string à renseigner)
     [HideInInspector]
-    public FMOD.Studio.EventInstance _WalkLowPlayer_snd;
+    public FMOD.Studio.EventInstance _WalkLowPlayer_snd;  // Création de l'instance du son de marche
 
     // BOOLEENS -----------------------------------------------
-    private bool soundWalkingAlreadyPlaying = false; // Le son est-il déjà en train d'être joué ?
-    private bool avatarAlreadyJumped = false;        // L'avatar a-t-il déjà sauté ?
-    private bool avatarIsRunning = false;            // L'avatar est-il en train de courrir ?
+    private bool soundWalkingAlreadyPlaying = false;      // Le son est-il déjà en train d'être joué ?
+    private bool avatarAlreadyJumped = false;             // L'avatar a-t-il déjà sauté ?
+    private bool avatarIsRunning = false;                 // L'avatar est-il en train de courrir ?
     [HideInInspector]
-    public bool gamePaused = false;                  // Le jeu est-il en pause ?
+    public bool gamePaused = false;                       // Le jeu est-il en pause ?
 
     // CANVAS -------------------------------------------------
-    public Canvas canvasQuit;                        // Canvas a afficher quand on appuye sur start
+    public Canvas canvasQuit;                             // Canvas a afficher quand on appuye sur start
 
     // GAMEOBJECTS --------------------------------------------
-    public GameObject mainCamera;
-
-    // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
-    UIScript UIS;
-    // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
-
+    public GameObject mainCamera;                         // Main Camera (Avatar)
 
     void Start()
     {
@@ -50,29 +45,21 @@ public class AvatarMovementScript : MonoBehaviour
         
         // Taille égale à la moitié de la taille du collider de l'avatar (.extents.y)
         distToGround = GetComponent<Collider>().bounds.extents.y;
-
-        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
-        UIS = GameObject.Find("MasterUI").GetComponent<UIScript>();
-        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
     }
 
     void Update()
     {
-        // TODO - Sortir les inputs des fonctions. 
+        // Déplacement
         Move();
+
+        // Saut
         Jump();
+
+        // Accroupir
         Crouch();
+
+        // Pause
         // Pause();
-
-
-
-        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            GetComponent<AvatarHealthScript>().actualHealth -= 20;
-            UIS.ShowHealth();
-        }
-        // *****TEST EN ATTENDANT L'IMPLEMENTATION DES DEGATS PAR LES ENNEMIS*****
     }
 
     void Jump ()
@@ -183,9 +170,6 @@ public class AvatarMovementScript : MonoBehaviour
     {
         return Physics.Raycast(transform.position, Vector3.down, distToGround + 0.1f);
     }
-
-
-
 
     //void Pause ()
     //{

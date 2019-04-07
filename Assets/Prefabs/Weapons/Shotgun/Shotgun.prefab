@@ -47,13 +47,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RPS: 2
+  bulletDamage: 50
   magazineSize: 8
   magazineAmmo: 0
   carriedAmmo: 0
   carriedAmmoAtStart: 20
-  maxCarriedAmmo: 100
+  maxCarriedAmmo: 250
+  origin: {x: 0, y: 0, z: 0}
   bulletEffet: {fileID: 0}
-  accuracy: 1
   fire: {fileID: 0}
   impactEffect: {fileID: 2605434621779353174, guid: c08bc5efd65b57845949d3b0d043fbaf,
     type: 3}

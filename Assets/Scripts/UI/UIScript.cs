@@ -24,6 +24,7 @@ public class UIScript : MonoBehaviour
 
     private void Start()
     {
+        // ***SCRIPTS***
         // Récupère le script "AvatarMovementScript" sur l'avatar
         AMS = GameObject.Find("Avatar").GetComponent<AvatarMovementScript>();
 
@@ -64,7 +65,7 @@ public class UIScript : MonoBehaviour
         // Le nombre de points de vie affiché au départ est le nombre de point de vie max
         actualHealth.text = maximumHealth.text;
 
-
+        // ***CURSEUR***
         // Désactive le pointeur de la souris
         Cursor.visible = false;
     }

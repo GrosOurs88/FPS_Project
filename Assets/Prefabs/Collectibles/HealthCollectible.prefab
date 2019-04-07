@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4268075363634482284}
   - component: {fileID: 4268075363634482285}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: CubeCrossHor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 4268075364695672309}
   - component: {fileID: 4268075364695672314}
   - component: {fileID: 4268075364695672315}
-  - component: {fileID: 4268075364695672312}
+  - component: {fileID: 662971027847330361}
   m_Layer: 0
   m_Name: HealthCollectible
   m_TagString: Untagged
@@ -171,7 +171,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4268075364695672312
+--- !u!114 &662971027847330361
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -180,9 +180,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 4268075364695672313}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed8df7655aacfbd4c887c38652906389, type: 3}
+  m_Script: {fileID: 11500000, guid: 6917c4d2bfd6f4042bb11d5d775d9482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletsCollectible: 0
+  amountOfBullets: 0
+  healCollectible: 1
   amountOfHealth: 50
 --- !u!1 &4268075364748936230
 GameObject:
@@ -196,7 +199,7 @@ GameObject:
   - component: {fileID: 4268075364748936226}
   - component: {fileID: 4268075364748936227}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: CubeCrossVer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -14,9 +14,9 @@ public class CameraControlScript : MonoBehaviour
     public float minimumY = -60F;
     public float maximumY = 60F;
 
-    // Rotation en Y
-    float rotationX = 0F;
-    float rotationY = 0F;
+    // Rotations actuelles en X et Y
+    private float rotationX = 0F;
+    private float rotationY = 0F;
 
     // Avatar
     public GameObject avatar;
@@ -27,8 +27,8 @@ public class CameraControlScript : MonoBehaviour
 
     void Start ()
     {
-            Cursor.visible = false;
-            Cursor.lockState = cursorMode; //<- here works
+        Cursor.visible = false;
+        Cursor.lockState = cursorMode; //<- here works
     }
 
     void Update()
@@ -50,6 +50,5 @@ public class CameraControlScript : MonoBehaviour
 
         // la velocité de l'avatar est nulle
         avatar.gameObject.GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
-
     }
 }

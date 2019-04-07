@@ -9,7 +9,7 @@ public class WeaponControllerScript : MonoBehaviour
     public Weapon weapon;                                      // Classe "Weapon" des armes
     public GameObject weaponGO;                                // L'arme actuellement en main  
 
-    private float timeFireRate;                                // FireRate de l'arme
+    private float timeFireRate;                                // Chrono pour FireRate de l'arme
 
     Weapon.AimParameters paramIn;                              // Parametres de zoom max, de la Struct 'AimParameters' contenue dans l'arme
     Weapon.AimParameters paramOut;                             // Parametres de zoom min (de base), de la Struct 'AimParameters' contenue dans l'arme

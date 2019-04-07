@@ -565,7 +565,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6917c4d2bfd6f4042bb11d5d775d9482, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletsCollectible: 1
   amountOfBullets: 50
+  healCollectible: 0
+  amountOfHealth: 0
 --- !u!33 &4290297581574626180
 MeshFilter:
   m_ObjectHideFlags: 0

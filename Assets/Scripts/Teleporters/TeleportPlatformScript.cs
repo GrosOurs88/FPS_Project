@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TeleportPlatformScript : MonoBehaviour
 {
+    //********** SCRIPT A PLACER SUR CHAQUE TELEPORTEUR **********
+
     // Si l'avatar quitte le collider
     public void OnTriggerExit(Collider other)
     {

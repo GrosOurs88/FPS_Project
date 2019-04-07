@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TeleporterZoneScript : MonoBehaviour
 {
+    //********** SCRIPT A PLACER SUR CHAQUE TELEPORTEUR **********
+
     public GameObject elementToTeleportAt;
     private GameObject zone;                        // Zone de la zone de teleportation au centre du téléporteur 
     private SphereCollider teleportZone;            // Collider de la zone de teleportation au centre du téléporteur 
@@ -29,8 +31,11 @@ public class TeleporterZoneScript : MonoBehaviour
                 other.transform.position = new Vector3(elementToTeleportAt.transform.position.x, elementToTeleportAt.transform.position.y + 1, elementToTeleportAt.transform.position.z);
                 other.transform.rotation = elementToTeleportAt.transform.rotation;
             }
+
+            // Si le téléporteur n'est pas relié à un autre téléporteur
             else
             {
+                // Message d'erreur
                 Debug.LogError("The elementToTeleportAt of " + gameObject.name + "must be another Teleporter !");
             }
         }
