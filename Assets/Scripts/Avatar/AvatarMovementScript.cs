@@ -7,13 +7,15 @@ public class AvatarMovementScript : MonoBehaviour
     //********** SCRIPT A PLACER SUR L'AVATAR **********
 
     // VARIABLES GAMEPLAY -------------------------------------
-    public float speed;                                  // Vitesse de déplacement de l'avatar
-    public float speedMultiplier;                        // Multiplicateur de vitesse quand l'avatar court
+    public float speed;                                   // Vitesse de déplacement de l'avatar
+    public float speedMultiplier;                         // Multiplicateur de vitesse quand l'avatar court
     public float jumpForce;
     private Rigidbody rb;
     private float horizontalMove;
     private float verticalMove;
     private float distToGround;
+    [HideInInspector]
+    public int numberOfEnergyBlocs;                      // Nombre d'energy blocs détenus par l'avatar
 
     // VARIABLES SON ------------------------------------------
     public string WalkLowPlayer_snd;                      // Son de marche (string à renseigner)

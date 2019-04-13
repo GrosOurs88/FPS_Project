@@ -11,7 +11,10 @@ public class Weapon : MonoBehaviour
     public int bulletDamage = 10;                         // Dégâts de base de l'arme
 
     //***AMMOS STATS***
-    private GameObject bullet;                            // Prefab de balle
+    public GameObject bullet;                            // Prefab de balle
+    public Transform fireAmmoPosition;
+    public float fireBulletSpeed;
+
     public int magazineSize;                              // Taille du chargeur
     [HideInInspector]
     public int magazineAmmo;                              // nombre de balles restantes dans le chargeur
@@ -21,17 +24,6 @@ public class Weapon : MonoBehaviour
     public int maxCarriedAmmo;                            // nombre maximal de balles en reserve pouvant être portées par l'avatar
     private float maxDistanceHitScanShot = 1000f;         // Distance max des bullets
     public Vector3 origin;                                //Point de départ de la balle lors du tir
-
-    //***VFX***
-    public GameObject bulletEffet;                        // Prefab d'effet de balle
-    public ParticleSystem fire;                           // Système de particule
-    public GameObject impactEffect;                       // Prefab d'effet à l'impact
-    public ParticleSystem impactEffectPart;               // ???
-    private ParticleSystem.Particle impact;               // ???
-    private ParticleSystem.Particle[] impacts;            // Tableau des effets dans la scène 
-    private int impactCount;                              // Nombre d'impacts
-    public GameObject bulletEffect;                       // ???
-    private ParticleSystem.Particle impactLast;           // ???
 
     //***AIM***
     public float timeToSwitchBetweenNormalAndAimMode;          // Durée de transition de la visée 
@@ -68,7 +60,7 @@ public class Weapon : MonoBehaviour
         weaponPositionBeforeAim = GetComponent<Transform>().localPosition;
 
         // Va chercher le script de l'UI dans le "MasterUI"
-        UIS = GameObject.Find("MasterUI").GetComponent<UIScript>();
+      //  UIS = GameObject.Find("MasterUI").GetComponent<UIScript>();
 
         // Le nombre de balles dans le chargeur est égal au nombre de balles max dans un chargeur (chargeur plein)
         magazineAmmo = magazineSize;
@@ -79,13 +71,7 @@ public class Weapon : MonoBehaviour
 
     // Tir
     public void HitScanShot()
-    {
-        // VFX
-        fire.Play();
- 
-        // Met à jour le tableau des particules dans la scène
-        impacts = new ParticleSystem.Particle[impactEffectPart.particleCount];
-
+    {       
         // RayCast 
         origin = new Vector3(cam.transform.position.x, cam.transform.position.y, cam.transform.position.z);
 
@@ -93,23 +79,18 @@ public class Weapon : MonoBehaviour
         magazineAmmo -= 1;
 
         // Met à jour le nombre de balles restantes
-        UIS.ShowAmmunitions();
+        // UIS.ShowAmmunitions();
+
+        // GameObject clone = Instantiate(bullet, fireAmmoPosition.position, fireAmmoPosition.rotation); //Old Instantiation
+        GameObject clone = Instantiate(Resources.Load("Ammunition/Bullet"), fireAmmoPosition.position, fireAmmoPosition.rotation) as GameObject;
+        clone.GetComponent<Rigidbody>().velocity = clone.transform.forward * fireBulletSpeed * Time.deltaTime;
+
 
         if (Physics.Raycast(origin, cam.transform.forward, out hit, maxDistanceHitScanShot))
-        {
-            // Récupère le nombre de particules alive et copie le tableau de particles dans impacts.
-            impactCount = impactEffectPart.GetParticles(impacts);
-
+        {   
             // rotation = normale de la balle sur l'objet touché, sur l'axe Y
             Quaternion rotation = Quaternion.LookRotation (-hit.normal, Vector3.up);
-
-            // Instancie un effet d'impact (particule) sur le point touché, dans le sens de la normale
-            Instantiate(impactEffectPart, new Vector3(hit.point.x, hit.point.y, hit.point.z), rotation);
-            // Instantiate (impactEffectPart, new Vector3 (hit.point.x + hit.normal.x / 100, hit.point.y + hit.normal.y / 100,hit.point.z + hit.normal.z / 100), rotation);
-
-            // Joue le système de particule
-            impactEffectPart.Play();            
-
+            
             // Si l'élément touché contient un script AvatarHealthScript (l'avatar)
             if (hit.transform.GetComponent<AvatarHealthScript>() != null)
             {
@@ -171,10 +152,10 @@ public class Weapon : MonoBehaviour
         }
 
         // Met à jour le nombre de balles restantes dans l'UI
-        UIS.ShowAmmunitions();
+    //    UIS.ShowAmmunitions();
 
         // Met à jour le nombre de balles en réserve dans l'UI
-        UIS.ShowReserveAmmunitions();
+    //    UIS.ShowReserveAmmunitions();
 
         // L'arme n'est plus en train d'être rechargée
         isReloading = false;

@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Teleporter
+  - Floor
+  - Bullet
+  - Checkpoint
+  - Target
+  - EnergyBlock
   layers:
   - Default
   - TransparentFX

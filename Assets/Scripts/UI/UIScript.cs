@@ -22,6 +22,14 @@ public class UIScript : MonoBehaviour
     Text maximumHealth;         // Le texte qui affiche le nombre de point de vie maximum de l'avatar
     Slider healthBar;           // Le Slider de la barre de vie de l'avatar
 
+    //SCORE
+    Canvas targets;
+    int actualScoreInt;
+    public int objectiveScoreInt;
+    Text actualScore;         
+    Text objectiveScore;      
+
+
     private void Start()
     {
         // ***SCRIPTS***
@@ -36,34 +44,50 @@ public class UIScript : MonoBehaviour
         
         // ***AMMO***
         // Va chercher le Canvas Ammo
-        canvasAmmo = GameObject.Find("Canvas_Ammo").GetComponent<Canvas>();
+        if(canvasAmmo != null)
+        {
+            canvasAmmo = GameObject.Find("Canvas_Ammo").GetComponent<Canvas>();
 
-        // Va chercher le texte qui affiche le nombre de munitions restantes et le nombre de munitions en reserve, depuis le Canvas Health
-        magazineAmmoAmount = canvasAmmo.transform.Find("MagazineAmmos").GetComponent<Text>();
-        carriedAmmoAmount = canvasAmmo.transform.Find("CarriedAmmos").GetComponent<Text>();
-        
-        // Le nombre de munitions affiché au départ est le nombre max de munitions de l'arme
-        magazineAmmoAmount.text = W.magazineSize.ToString();
-        carriedAmmoAmount.text = W.carriedAmmoAtStart.ToString();
+            // Va chercher le texte qui affiche le nombre de munitions restantes et le nombre de munitions en reserve, depuis le Canvas Health
+            magazineAmmoAmount = canvasAmmo.transform.Find("MagazineAmmos").GetComponent<Text>();
+            carriedAmmoAmount = canvasAmmo.transform.Find("CarriedAmmos").GetComponent<Text>();
 
+            // Le nombre de munitions affiché au départ est le nombre max de munitions de l'arme
+            magazineAmmoAmount.text = W.magazineSize.ToString();
+            carriedAmmoAmount.text = W.carriedAmmoAtStart.ToString();
+        }
 
         // ***HEALTH***
         // Va chercher le Canvas Health
-        canvasHealth = GameObject.Find("Canvas_Health").GetComponent<Canvas>();
-        
-        // Va chercher le texte qui affiche le nombre de points de vie restants et le nombre de points de vie max, depuis le Canvas Health
-        actualHealth = canvasHealth.transform.Find("ActualHealth").GetComponent<Text>();
-        maximumHealth = canvasHealth.transform.Find("MaxHealth").GetComponent<Text>();
+        if (canvasHealth != null)
+        {
+            canvasHealth = GameObject.Find("Canvas_Health").GetComponent<Canvas>();
 
-        // Va chercher le Slider des points de vie et le set au maximum
-        healthBar = canvasHealth.transform.Find("HealthBar").GetComponent<Slider>();
-        healthBar.value = healthBar.maxValue;
+            // Va chercher le texte qui affiche le nombre de points de vie restants et le nombre de points de vie max, depuis le Canvas Health
+            actualHealth = canvasHealth.transform.Find("ActualHealth").GetComponent<Text>();
+            maximumHealth = canvasHealth.transform.Find("MaxHealth").GetComponent<Text>();
 
-        // Le nombre de points de vie max affiché est celui des points de vie max de l'AvatarHealthScript
-        maximumHealth.text = AHS.maxHealth.ToString();
+            // Va chercher le Slider des points de vie et le set au maximum
+            healthBar = canvasHealth.transform.Find("HealthBar").GetComponent<Slider>();
+            healthBar.value = healthBar.maxValue;
 
-        // Le nombre de points de vie affiché au départ est le nombre de point de vie max
-        actualHealth.text = maximumHealth.text;
+            // Le nombre de points de vie max affiché est celui des points de vie max de l'AvatarHealthScript
+            maximumHealth.text = AHS.maxHealth.ToString();
+
+            // Le nombre de points de vie affiché au départ est le nombre de point de vie max
+            actualHealth.text = maximumHealth.text;
+        }
+
+        // ***TARGETS***
+        targets = GameObject.Find("Canvas_Targets").GetComponent<Canvas>();
+
+        actualScore = targets.transform.Find("ActualTargets").GetComponent<Text>();
+        objectiveScore = targets.transform.Find("TotalTargets").GetComponent<Text>();
+
+        // Le nombre de points max au start
+        objectiveScore.text = objectiveScoreInt.ToString();
+
+
 
         // ***CURSEUR***
         // Désactive le pointeur de la souris
@@ -107,7 +131,11 @@ public class UIScript : MonoBehaviour
     }
 
 
-
+    public void Score()
+    {
+        actualScoreInt += 1;
+        actualScore.text = actualScoreInt.ToString();
+    }
 
 
     public void Quit()

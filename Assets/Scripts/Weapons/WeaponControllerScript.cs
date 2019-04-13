@@ -29,7 +29,9 @@ public class WeaponControllerScript : MonoBehaviour
     void Update()
     {
         // Si on appuye sur l'input de tir et que le fireRate a été atteind et que l'arme a encore des munitions et qu'elle n'est pas en train d'être rechargée
-        if (Input.GetButton("Fire") && timeFireRate >= 1 / weapon.RPS && weapon.magazineAmmo > 0 && !weapon.isReloading)
+        // if (Input.GetButton("Fire") && timeFireRate >= 1 / weapon.RPS && weapon.magazineAmmo > 0 && !weapon.isReloading)  ***** OLD VERSION *****
+
+        if (Input.GetButtonDown("Fire"))
         {
             weapon.HitScanShot();
             timeFireRate = 0;
